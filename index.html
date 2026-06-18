@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BDO Combo Builder</title>
+<style>
+:root {
+  --bg:#0a0a0c; --panel:#141418; --plight:#1e1e24;
+  --accent:#ff4a4a; --text:#e1e1e6; --muted:#8d8d99;
+  --border:#29292e; --sa:#4ade80; --fg:#60a5fa;
+  --ifr:#f472b6; --cc:#fbbf24; --addon:#c084fc;
+  --xbox-a:#4caf50; --xbox-b:#f44336; --xbox-x:#2196f3; --xbox-y:#ffc107;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+/* ── HEADER ── */
+header {
+  background:linear-gradient(135deg,#1a1a2e,#16213e);
+  padding:10px 14px; border-bottom:2px solid var(--accent);
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+header h1 { font-size:1rem; color:#fff; display:flex; align-items:center; gap:6px; }
+.controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+select {
+  background:var(--panel); color:var(--text); border:1px solid var(--border);
+  border-radius:6px; padding:5px 10px; font-size:.82rem; cursor:pointer;
+}
+.spec { display:flex; background:var(--panel); border-radius:6px; overflow:hidden; border:1px solid var(--border); }
+.spec button {
+  background:transparent; color:var(--muted); border:none; padding:5px 12px;
+  font-size:.8rem; cursor:pointer; transition:all .2s;
+}
+.spec button.active { background:var(--accent); color:#fff; font-weight:600; }
+
+/* ── LAYOUT ── */
+.layout { display:grid; grid-template-columns:280px 1fr; min-height:calc(100vh - 52px); }
+@media(max-width:700px){ .layout { grid-template-columns:1fr; } }
+
+/* ── SKILL PANEL (izquierda) ── */
+.skill-panel { border-right:1px solid var(--border); display:flex; flex-direction:column; height:calc(100vh - 52px); position:sticky; top:52px; }
+@media(max-width:700px){ .skill-panel { height:auto; position:static; max-height:45vh; } }
+
+.panel-header { padding:10px; border-bottom:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
+.search-wrap { position:relative; }
+.search-wrap input {
+  width:100%; background:var(--plight); border:1px solid var(--border);
+  color:var(--text); border-radius:6px; padding:7px 10px 7px 30px; font-size:.82rem;
+}
+.search-icon { position:absolute; left:9px; top:50%; transform:translateY(-50%); font-size:.85rem; opacity:.5; }
+.filters { display:flex; gap:5px; flex-wrap:wrap; }
+.tag {
+  background:var(--plight); border:1px solid var(--border); color:var(--muted);
+  border-radius:20px; padding:3px 10px; font-size:.72rem; cursor:pointer; transition:all .15s;
+}
+.tag.active { color:#fff; border-color:currentColor; }
+.tag.t-all.active { background:#333; color:#fff; border-color:#666; }
+.tag.t-sa.active { background:#14532d; color:var(--sa); border-color:var(--sa); }
+.tag.t-fg.active { background:#1e3a5f; color:var(--fg); border-color:var(--fg); }
+.tag.t-ifr.active { background:#4a1942; color:var(--ifr); border-color:var(--ifr); }
+.tag.t-cc.active { background:#451a03; color:var(--cc); border-color:var(--cc); }
+.tag.t-buff.active { background:#2e1065; color:var(--addon); border-color:var(--addon); }
+
+.skill-count { font-size:.72rem; color:var(--muted); padding:4px 10px; border-bottom:1px solid var(--border); }
+.skill-count span { color:var(--accent); font-weight:700; }
+
+.skill-list { overflow-y:auto; flex:1; padding:8px; display:flex; flex-direction:column; gap:5px; }
+
+/* ── SKILL CARD ── */
+.scard {
+  background:var(--plight); border:1px solid var(--border); border-radius:8px;
+  padding:8px 10px; display:flex; align-items:center; gap:8px;
+  cursor:pointer; transition:all .15s; user-select:none;
+}
+.scard:hover, .scard:active { border-color:var(--accent); background:#25252d; transform:translateX(2px); }
+.scard .icon { font-size:1.3rem; min-width:28px; text-align:center; }
+.scard .info { flex:1; min-width:0; }
+.scard .sname { font-size:.82rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.scard .smeta { display:flex; gap:4px; flex-wrap:wrap; margin-top:3px; }
+.badge { font-size:.63rem; padding:1px 6px; border-radius:10px; font-weight:700; }
+.b-sa  { background:#14532d; color:var(--sa); }
+.b-fg  { background:#1e3a5f; color:var(--fg); }
+.b-ifr { background:#4a1942; color:var(--ifr); }
+.b-cc  { background:#451a03; color:var(--cc); }
+.b-buff{ background:#2e1065; color:var(--addon); }
+.scard .xbox { font-size:.7rem; color:var(--muted); white-space:nowrap; text-align:right; line-height:1.4; }
+
+/* Xbox button colors inline */
+.btn-A { color:var(--xbox-a); font-weight:700; }
+.btn-B { color:var(--xbox-b); font-weight:700; }
+.btn-X { color:var(--xbox-x); font-weight:700; }
+.btn-Y { color:var(--xbox-y); font-weight:700; }
+
+/* ── COMBO PANEL (derecha) ── */
+.combo-panel { display:flex; flex-direction:column; padding:12px; gap:12px; overflow-y:auto; }
+
+.section-title {
+  font-size:.75rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.08em; color:var(--muted); margin-bottom:4px;
+}
+
+/* ── TIMELINE ── */
+.timeline-wrap { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:10px; }
+.timeline {
+  display:flex; align-items:center; flex-wrap:wrap; gap:4px; min-height:52px;
+}
+.tempty { color:var(--muted); font-size:.82rem; font-style:italic; }
+.titem {
+  background:var(--plight); border:1px solid var(--border); border-radius:8px;
+  padding:5px 8px; display:flex; flex-direction:column; align-items:flex-start;
+  font-size:.78rem; position:relative; max-width:140px;
+}
+.titem .tname { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
+.titem .tadd {
+  font-size:.65rem; color:var(--addon); cursor:pointer; margin-top:2px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;
+}
+.titem .tadd:hover { text-decoration:underline; }
+.titem .tdel {
+  position:absolute; top:-6px; right:-6px; background:var(--accent);
+  color:#fff; border:none; border-radius:50%; width:16px; height:16px;
+  font-size:.65rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  line-height:1;
+}
+.arrow { color:var(--muted); font-size:.9rem; }
+
+/* ── COMBO ACTIONS ── */
+.combo-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.btn {
+  background:var(--plight); color:var(--text); border:1px solid var(--border);
+  border-radius:7px; padding:7px 14px; font-size:.8rem; cursor:pointer;
+  transition:all .15s; font-family:inherit;
+}
+.btn:hover { border-color:var(--accent); color:var(--accent); }
+.btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+.btn.primary:hover { background:#ff3030; }
+.btn.danger { border-color:#7f1d1d; color:#f87171; }
+.btn.danger:hover { background:#7f1d1d; color:#fff; }
+.btn.save { border-color:#1d4ed8; color:#60a5fa; }
+.btn.save:hover { background:#1d4ed8; color:#fff; }
+
+/* ── ANÁLISIS ── */
+.analysis { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; display:none; }
+.ablock { margin-bottom:10px; }
+.ablock h4 { font-size:.78rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.05em; }
+.alist { list-style:none; display:flex; flex-direction:column; gap:3px; }
+.alist li { font-size:.8rem; padding:4px 8px; background:var(--plight); border-radius:5px; }
+.prot-line { display:flex; gap:4px; flex-wrap:wrap; align-items:center; }
+.pblock { font-size:.7rem; padding:3px 8px; border-radius:5px; font-weight:700; }
+.p-sa  { background:#14532d; color:var(--sa); }
+.p-fg  { background:#1e3a5f; color:var(--fg); }
+.p-ifr { background:#4a1942; color:var(--ifr); }
+.p-none{ background:#1c1c24; color:var(--muted); }
+.warn  { background:#3b0a0a; color:#f87171; border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
+.ok    { background:#052e16; color:var(--sa); border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
+
+/* ── SAVED COMBOS ── */
+.saved-section { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; display:none; }
+.saved-list { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+.saved-item {
+  background:var(--plight); border:1px solid var(--border); border-radius:7px;
+  padding:7px 10px; display:flex; align-items:center; justify-content:space-between;
+}
+.saved-item span { font-size:.8rem; }
+.saved-item .sbtns { display:flex; gap:5px; }
+.saved-item button {
+  background:transparent; border:1px solid var(--border); color:var(--muted);
+  border-radius:5px; padding:3px 8px; font-size:.75rem; cursor:pointer;
+}
+.saved-item button:hover { border-color:var(--accent); color:var(--text); }
+
+/* ── IDEAS/TIPS PANEL ── */
+.tips-panel { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; }
+.tip-item { font-size:.78rem; color:var(--muted); padding:5px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; }
+.tip-item:last-child { border-bottom:none; }
+.tip-item .tip-icon { font-size:1rem; }
+
+/* ── ADDON MODAL ── */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:200;
+  display:flex; align-items:center; justify-content:center; padding:16px;
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.modal-overlay.active { opacity:1; pointer-events:all; }
+.modal {
+  background:var(--panel); border:1px solid var(--border); border-radius:12px;
+  width:100%; max-width:420px; max-height:80vh; display:flex; flex-direction:column;
+  transform:translateY(16px); transition:transform .2s;
+}
+.modal-overlay.active .modal { transform:translateY(0); }
+.modal-head { padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.modal-head h3 { font-size:.9rem; }
+.modal-head .skill-name { color:var(--addon); font-size:.8rem; margin-top:2px; }
+.modal-close { background:transparent; border:none; color:var(--muted); font-size:1.1rem; cursor:pointer; }
+.modal-hint { font-size:.72rem; color:var(--muted); padding:6px 16px; border-bottom:1px solid var(--border); }
+.addon-grid { overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:5px; flex:1; }
+.aopt {
+  background:var(--plight); border:1px solid var(--border); border-radius:7px;
+  padding:8px 12px; cursor:pointer; font-size:.8rem; transition:all .15s; user-select:none;
+}
+.aopt:hover { border-color:var(--addon); }
+.aopt.selected { background:#2e1065; border-color:var(--addon); color:#fff; }
+.modal-foot { padding:10px 16px; border-top:1px solid var(--border); display:flex; gap:8px; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎮 BDO Combo Builder <span style="color:var(--muted);font-weight:400;font-size:.8rem">Xbox</span></h1>
+  <div class="controls">
+    <select id="class-select" onchange="changeClass()">
+      <option value="maegu">🦊 Maegu</option>
+      <option value="guardian">🛡️ Guardian</option>
+      <option value="striker">👊 Striker</option>
+      <option value="mystic">🌊 Mystic</option>
+      <option value="sage">⚡ Sage</option>
+      <option value="witch">🔮 Witch</option>
+      <option value="valkyrie">⚔️ Valkyrie</option>
+      <option value="woosa">🌸 Woosa</option>
+      <option value="seraph">✨ Seraph</option>
+    </select>
+    <div class="spec">
+      <button id="btn-suc" onclick="setSpec('succession')" class="active">Sucesión</button>
+      <button id="btn-awk" onclick="setSpec('awakening')">Despertar</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- PANEL IZQUIERDO: Habilidades -->
+  <aside class="skill-panel">
+    <div class="panel-header">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Buscar habilidad..." oninput="filterSkills()">
+      </div>
+      <div class="filters">
+        <span class="tag t-all active" onclick="setFilter('all')">Todas</span>
+        <span class="tag t-sa"  onclick="setFilter('sa')">SA</span>
+        <span class="tag t-fg"  onclick="setFilter('fg')">FG</span>
+        <span class="tag t-ifr" onclick="setFilter('ifr')">I-Frame</span>
+        <span class="tag t-cc"  onclick="setFilter('cc')">CC</span>
+        <span class="tag t-buff"onclick="setFilter('buff')">Buff</span>
+      </div>
+    </div>
+    <div class="skill-count">Mostrando <span id="skill-count">0</span> habilidades</div>
+    <div class="skill-list" id="skill-list"></div>
+  </aside>
+
+  <!-- PANEL DERECHO: Combo + Análisis -->
+  <main class="combo-panel">
+
+    <!-- Timeline -->
+    <div class="timeline-wrap">
+      <div class="section-title">Combo (<span id="combo-count">0</span> habilidades)</div>
+      <div class="timeline" id="timeline">
+        <span class="tempty">Vacío — toca una habilidad para agregarla</span>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="combo-actions">
+      <button class="btn primary" onclick="analyzeCombo()">📊 Analizar</button>
+      <button class="btn save"    onclick="saveCombo()">💾 Guardar</button>
+      <button class="btn"         onclick="undoLast()">↩️ Deshacer</button>
+      <button class="btn danger"  onclick="clearCombo()">🗑️ Limpiar</button>
+    </div>
+
+    <!-- Análisis -->
+    <div class="analysis" id="analysis">
+      <div class="section-title">Análisis del Combo</div>
+      <div id="analysis-content"></div>
+    </div>
+
+    <!-- Combos Guardados -->
+    <div class="saved-section" id="saved-section">
+      <div class="section-title">Combos Guardados</div>
+      <div class="saved-list" id="saved-list"></div>
+    </div>
+
+    <!-- Ideas y Tips -->
+    <div class="tips-panel">
+      <div class="section-title" style="margin-bottom:8px">💡 Ideas para mejorar tu rotación (PvE)</div>
+      <div class="tip-item"><span class="tip-icon">🛡️</span><span>Empieza siempre con una habilidad con <b>SA</b> (Super Armor) para entrar seguro al pack.</span></div>
+      <div class="tip-item"><span class="tip-icon">⚡</span><span>Encadena las habilidades de <b>CC</b> (knockdown/stun) seguidas para maximizar el daño aéreo y al suelo.</span></div>
+      <div class="tip-item"><span class="tip-icon">🔄</span><span>Busca un loop que puedas repetir — las mejores rotaciones PvE tienen entre 5 y 8 habilidades.</span></div>
+      <div class="tip-item"><span class="tip-icon">💜</span><span>Pon los <b>Addons</b> de Recuperación de HP en las habilidades que más usas para no depender de pociones.</span></div>
+      <div class="tip-item"><span class="tip-icon">🎯</span><span>Filtra por <b>Buff</b> y asigna addons de daño en esas habilidades — amplifican más el efecto.</span></div>
+      <div class="tip-item"><span class="tip-icon">📉</span><span>El addon <b>Reducción DP enemigo</b> es uno de los mejores para grindeo — ponlo en tu habilidad principal.</span></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL ADDONS -->
+<div class="modal-overlay" id="addon-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3>Seleccionar Addons</h3>
+        <div class="skill-name" id="modal-skill-name">—</div>
+      </div>
+      <button class="modal-close" onclick="closeAddonModal()">✕</button>
+    </div>
+    <div class="modal-hint">Máximo <b>2 addons</b> por habilidad (regla del juego)</div>
+    <div class="addon-grid" id="addon-grid"></div>
+    <div class="modal-foot">
+      <button class="btn primary" onclick="applyAddons()">✅ Aplicar</button>
+      <button class="btn" onclick="closeAddonModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="skills.js"></script>
+<script src="maegu.js"></script>
+<script src="guardian.js"></script>
+<script src="striker.js"></script>
+<script src="mystic.js"></script>
+<script src="sage.js"></script>
+<script src="witch.js"></script>
+<script src="valkyrie.js"></script>
+<script src="woosa.js"></script>
+<script src="seraph.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
