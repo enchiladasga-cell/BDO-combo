@@ -75,7 +75,20 @@ select {
   cursor:pointer; transition:all .15s; user-select:none;
 }
 .scard:hover, .scard:active { border-color:var(--accent); background:#25252d; transform:translateX(2px); }
-.scard .icon { font-size:1.3rem; min-width:28px; text-align:center; }
+.scard .icon { 
+  font-size:1.3rem; 
+  min-width:28px; 
+  text-align:center; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+}
+.scard .icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
 .scard .info { flex:1; min-width:0; }
 .scard .sname { font-size:.82rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .scard .smeta { display:flex; gap:4px; flex-wrap:wrap; margin-top:3px; }
@@ -113,6 +126,12 @@ select {
   font-size:.78rem; position:relative; max-width:140px;
 }
 .titem .tname { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
+.titem .tname img {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
 .titem .tadd {
   font-size:.65rem; color:var(--addon); cursor:pointer; margin-top:2px;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;
