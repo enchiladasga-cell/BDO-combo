@@ -17,53 +17,35 @@ try {
 
 // ══════════════════════════════════════════════════
 //  ADDONS (meta PvE 2025-2026)
+//  NOTA: Actualizado según parches oficiales de Pearl Abyss
 // ══════════════════════════════════════════════════
 const BDO_ADDONS = [
   // Daño ofensivo
-  '⚔️ Daño a Monstruos +20',
-  '⚔️ Daño a Monstruos +30',
-  '🩸 Reducción DP Enemigo -15',
-  '🩸 Reducción DP Enemigo -20',
-  '💥 Prob. Crítico +20%',
-  '💥 Prob. Crítico +30%',
-  '🔥 Daño Crítico +3%',
-  '🔥 Daño Crítico +5%',
-  '🔪 Daño por la Espalda +3%',
-  '🔪 Daño por la Espalda +5%',
-  '🔨 Daño al Suelo +3%',
-  '🔨 Daño al Suelo +5%',
-  '🌪️ Daño Aéreo +3%',
-  '🌪️ Daño Aéreo +5%',
-  '🎯 Precisión +4%',
-  '🎯 Precisión +5%',
-  '🪓 Daño JvJ +15',
-  '🪓 Daño JvJ +20',
+  '⚔️ Critical Hit Rate +30%',
+  '🔥 Critical Hit Damage +5%',
+  '🔪 Back Attack Damage +5%',
+  '🔨 Down Attack Damage +5%',
+  '🌪️ Air Attack Damage +5%',
+  '🎯 Accuracy +5%',
   // Velocidad
-  '⚡ Vel. Ataque/Casteo +7%',
-  '⚡ Vel. Ataque/Casteo +10%',
-  '🏃 Vel. Movimiento +7%',
-  '🏃 Vel. Movimiento +10%',
+  '⚡ Attack/Casting Speed +10%',
+  '🏃 Movement Speed +10%',
   // Defensivo / Sostenibilidad
-  '❤️ Recuperación HP +20',
-  '❤️ Recuperación HP +30',
-  '💙 Recuperación MP/WP/SP +15',
-  '💙 Recuperación MP/WP/SP +20',
-  '🛡️ DP +15',
-  '🛡️ DP +20',
-  '💨 Evasión +4%',
-  '💨 Evasión +5%',
+  '❤️ Recover 10 HP per hit',
+  '💙 Recover 20 MP/WP/SP per hit',
+  '🛡️ All Defenses +20',
+  '💨 Evasion +5%',
   // Debuffs al enemigo
-  '📉 Evasión Enemiga -4%',
-  '📉 Evasión Enemiga -5%',
-  '🛑 Vel. Ataque Enemiga -7%',
-  '🛑 Vel. Ataque Enemiga -10%',
-  '🐢 Vel. Movimiento Enemiga -10%',
-  '🐢 Vel. Movimiento Enemiga -15%',
+  '🩸 All Defenses -20',
+  '📉 Evasion -5%',
+  '🎯 Accuracy -5%',
+  '🛑 Attack/Casting Speed -10%',
+  '🐢 Movement Speed -10%',
   // DOT
-  '🩸 Sangrado (50 daño c/3s)',
-  '🔥 Quemadura (50 daño c/3s)',
-  '☠️ Veneno (50 daño c/3s)',
-  '🤕 Dolor (50 daño c/3s)',
+  '🩸 Bleeding 100 damage per 3 sec',
+  // Smash effects
+  '💥 15% chance to Air Smash',
+  '💥 15% chance to Down Smash',
 ];
 
 // ══════════════════════════════════════════════════
@@ -144,18 +126,26 @@ function filterSkills() {
 
     // Badges
     let badges = '';
-    if (s.proteccion && s.proteccion !== 'Ninguna') {
+    if (s.proteccion && s.proteccion !== 'Ninguna' && s.proteccion !== 'Pasiva') {
       const pClass = s.proteccion.includes('SA') ? 'b-sa' : s.proteccion.includes('FG') ? 'b-fg' : 'b-ifr';
       badges += `<span class="badge ${pClass}">${s.proteccion}</span>`;
     }
     if (s.cc && s.cc !== 'Ninguno') badges += `<span class="badge b-cc">CC</span>`;
     if (s.buffs && s.buffs !== 'Ninguno') badges += `<span class="badge b-buff">Buff</span>`;
 
+    // Icono - soporta emojis o URLs de imágenes
+    let iconHtml;
+    if (s.icon && s.icon.startsWith('http')) {
+      iconHtml = `<img src="${s.icon}" alt="${s.nombre}" loading="lazy" onerror="this.style.display='none'; this.parentNode.innerHTML='⚔️';">`;
+    } else {
+      iconHtml = s.icon || '⚔️';
+    }
+
     // Input Xbox formateado
     const xboxHtml = formatXbox(s.input_xbox || '');
 
     card.innerHTML = `
-      <div class="icon">${s.icon || '⚔️'}</div>
+      <div class="icon">${iconHtml}</div>
       <div class="info">
         <div class="sname">${s.nombre}</div>
         <div class="smeta">${badges}</div>
@@ -178,16 +168,16 @@ function filterSkills() {
 // Colorea los botones Xbox en el texto
 function formatXbox(text) {
   return text
-    .replace(/\b(RB)\b/g, '<span style="color:#fbbf24;font-weight:700">RB</span>')
-    .replace(/\b(LB)\b/g, '<span style="color:#60a5fa;font-weight:700">LB</span>')
-    .replace(/\b(RT)\b/g, '<span style="color:#f472b6;font-weight:700">RT</span>')
-    .replace(/\b(LT)\b/g, '<span style="color:#4ade80;font-weight:700">LT</span>')
+    .replace(/(RB)/g, '<span style="color:#fbbf24;font-weight:700">RB</span>')
+    .replace(/(LB)/g, '<span style="color:#60a5fa;font-weight:700">LB</span>')
+    .replace(/(RT)/g, '<span style="color:#f472b6;font-weight:700">RT</span>')
+    .replace(/(LT)/g, '<span style="color:#4ade80;font-weight:700">LT</span>')
     .replace(/\[A\]/g, '<span style="color:#4caf50;font-weight:700">A</span>')
     .replace(/\[B\]/g, '<span style="color:#f44336;font-weight:700">B</span>')
     .replace(/\[X\]/g, '<span style="color:#2196f3;font-weight:700">X</span>')
     .replace(/\[Y\]/g, '<span style="color:#ffc107;font-weight:700">Y</span>')
-    .replace(/\b(RS↑|RS↓|RS←|RS→|RS)\b/g, '<span style="color:#e2e8f0;font-weight:700">$1</span>')
-    .replace(/\b(LS↑|LS↓|LS←|LS→|LS)\b/g, '<span style="color:#cbd5e1;font-weight:700">$1</span>');
+    .replace(/(RS↑|RS↓|RS←|RS→|RS)/g, '<span style="color:#e2e8f0;font-weight:700">$1</span>')
+    .replace(/(LS↑|LS↓|LS←|LS→|LS)/g, '<span style="color:#cbd5e1;font-weight:700">$1</span>');
 }
 
 // ══════════════════════════════════════════════════
@@ -242,8 +232,16 @@ function renderCombo() {
       ? s.addons.map(a => a.split(' ').slice(0,2).join(' ')).join(' / ')
       : '+Addon';
 
+    // Icono en timeline
+    let iconDisplay;
+    if (s.icon && s.icon.startsWith('http')) {
+      iconDisplay = `<img src="${s.icon}" style="width:14px;height:14px;vertical-align:middle;margin-right:3px;" onerror="this.style.display='none'">`;
+    } else {
+      iconDisplay = s.icon || '⚔️';
+    }
+
     item.innerHTML = `
-      <div class="tname">${s.icon || '⚔️'} ${s.nombre}</div>
+      <div class="tname">${iconDisplay} ${s.nombre}</div>
       <div class="tadd" onclick="openAddonModal(${i}); event.stopPropagation();">💜 ${addonLabel}</div>
       <button class="tdel" onclick="removeSkill(${i}); event.stopPropagation();">×</button>
     `;
