@@ -240,14 +240,15 @@ function renderInputBar() {
 
   let html = '';
   combo.forEach((s, i) => {
-    if (i > 0) {
-      html += '<span class="ib-sep">→</span>';
-    }
     const inp = s.input_xbox || '?';
     html += `
-      <div class="ib-block">
-        <div class="ib-btn">${colorizeInputBar(inp)}</div>
-        <div class="ib-name">${s.icon} ${s.nombre}</div>
+      <div class="ib-step">
+        <div class="ib-number">${i + 1}</div>
+        <div class="ib-btn" onclick="openEditInputModal(${i})" style="cursor:pointer;" title="Haz clic para editar">${colorizeInputBar(inp)}</div>
+        <div class="ib-info">
+          <div class="ib-name">${s.nombre}</div>
+          <div class="ib-icon-name"><span>${s.icon}</span><span>${s.cc && s.cc !== 'Ninguno' ? '⚡ ' + s.cc : ''}</span></div>
+        </div>
       </div>`;
   });
 
@@ -548,8 +549,33 @@ function exportCombo() {
 }
 
 // ══════════════════════════════════════════════════
-//  INIT
+//  EDITAR INPUT DE HABILIDAD
 // ══════════════════════════════════════════════════
+let editingInputIndex = -1;
+
+function openEditInputModal(index) {
+  editingInputIndex = index;
+  const skill = combo[index];
+  document.getElementById('edit-skill-name').textContent = skill.nombre;
+  document.getElementById('edit-input-field').value = skill.input_xbox || '';
+  document.getElementById('edit-input-modal').classList.add('active');
+  document.getElementById('edit-input-field').focus();
+}
+
+function saveEditInput() {
+  const newInput = document.getElementById('edit-input-field').value.trim();
+  if (editingInputIndex >= 0 && newInput) {
+    combo[editingInputIndex].input_xbox = newInput;
+    renderTimeline();
+    renderInputBar();
+  }
+  closeEditInputModal();
+}
+
+function closeEditInputModal() {
+  document.getElementById('edit-input-modal').classList.remove('active');
+  editingInputIndex = -1;
+}
 window.addEventListener('DOMContentLoaded', () => {
   filterSkills();
   renderSaved();

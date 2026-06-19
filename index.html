@@ -191,35 +191,50 @@ select {
 /* ── BARRA DE INPUTS ── */
 .input-bar {
   background:#0d0d12;
-  border:1px solid var(--border);
+  border:2px solid var(--accent);
   border-radius:10px;
-  padding:10px 14px;
+  padding:12px 16px;
   display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:6px;
-  min-height:54px;
+  flex-direction:column;
+  gap:8px;
+  max-height:400px;
+  overflow-y:auto;
+  min-height:60px;
 }
 .input-bar-empty {
   color:var(--muted);
-  font-size:.8rem;
+  font-size:.82rem;
   font-style:italic;
+  text-align:center;
+  padding:20px 10px;
 }
 .ib-step {
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:10px;
+  padding:8px 10px;
+  background:var(--plight);
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+.ib-number {
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--accent);
+  min-width:24px;
+  text-align:center;
 }
 .ib-btn {
-  font-size:1rem;
+  font-size:1.1rem;
   font-weight:800;
-  padding:4px 10px;
+  padding:6px 12px;
   border-radius:6px;
   background:#1a1a22;
   border:1px solid var(--border);
   line-height:1.2;
   white-space:nowrap;
   letter-spacing:.02em;
+  flex-shrink:0;
 }
 .ib-btn .xbox-A { color:var(--xbox-a); }
 .ib-btn .xbox-B { color:var(--xbox-b); }
@@ -231,24 +246,33 @@ select {
 .ib-btn .xbox-RB { color:#ffd580; }
 .ib-btn .xbox-LS { color:var(--muted); }
 .ib-sep {
-  color:#555;
-  font-size:1.1rem;
+  color:var(--muted);
+  font-size:.9rem;
   font-weight:700;
+  align-self:center;
+  opacity:.6;
+}
+.ib-info {
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  flex:1;
+  min-width:0;
 }
 .ib-name {
-  font-size:.6rem;
-  color:var(--muted);
-  max-width:70px;
-  text-align:center;
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--text);
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-.ib-block {
+.ib-icon-name {
+  font-size:.72rem;
+  color:var(--muted);
   display:flex;
-  flex-direction:column;
+  gap:4px;
   align-items:center;
-  gap:2px;
 }
 
 /* ── ADDON MODAL ── */
@@ -405,6 +429,32 @@ select {
   </main>
 </div>
 
+<!-- MODAL EDITAR INPUT -->
+<div class="modal-overlay" id="edit-input-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3>Editar Input</h3>
+        <div class="skill-name" id="edit-skill-name">—</div>
+      </div>
+      <button class="modal-close" onclick="closeEditInputModal()">✕</button>
+    </div>
+    <div class="modal-hint">Ingresa el input de Xbox. Ej: <b>LT + [Y]</b>, <b>RB + [X]</b>, <b>LS↑ + [A]</b></div>
+    <div style="padding:16px; display:flex; flex-direction:column; gap:10px;">
+      <input type="text" id="edit-input-field" placeholder="LT + [Y]" style="background:var(--plight); border:1px solid var(--border); color:var(--text); border-radius:6px; padding:10px; font-size:.9rem; font-family:monospace;">
+      <div style="display:flex; gap:8px; font-size:.8rem; color:var(--muted);">
+        <span>💡 Botones: <b>[A] [B] [X] [Y]</b></span>
+        <span>Modificadores: <b>LT LB RT RB</b></span>
+        <span>Stick: <b>LS↑ LS↓ LS← LS→</b></span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn primary" onclick="saveEditInput()">✅ Guardar</button>
+      <button class="btn" onclick="closeEditInputModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL ADDONS -->
 <div class="modal-overlay" id="addon-modal">
   <div class="modal">
@@ -425,6 +475,7 @@ select {
 </div>
 
 <script src="skills.js"></script>
+<script src="button-mappings.js"></script>
 <script src="maegu.js"></script>
 <script src="guardian.js"></script>
 <script src="striker.js"></script>
