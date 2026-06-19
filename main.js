@@ -63,6 +63,26 @@ const BDO_ADDONS = [
 ];
 
 // ══════════════════════════════════════════════════
+//  COLOREAR BOTONES XBOX (función reutilizable)
+// ══════════════════════════════════════════════════
+function colorXbox(text) {
+  if (!text) return '';
+  return text
+    .replace(/LS↑/g, '<span style="color:#e2e8f0;font-weight:700">LS↑</span>')
+    .replace(/LS↓/g, '<span style="color:#e2e8f0;font-weight:700">LS↓</span>')
+    .replace(/LS←/g, '<span style="color:#e2e8f0;font-weight:700">LS←</span>')
+    .replace(/LS→/g, '<span style="color:#e2e8f0;font-weight:700">LS→</span>')
+    .replace(/LB/g, '<span style="color:#60a5fa;font-weight:700">LB</span>')
+    .replace(/RB/g, '<span style="color:#fbbf24;font-weight:700">RB</span>')
+    .replace(/LT/g, '<span style="color:#4ade80;font-weight:700">LT</span>')
+    .replace(/RT/g, '<span style="color:#f472b6;font-weight:700">RT</span>')
+    .replace(/\[A\]/g, '<span style="color:#4caf50;font-weight:700">[A]</span>')
+    .replace(/\[B\]/g, '<span style="color:#f44336;font-weight:700">[B]</span>')
+    .replace(/\[X\]/g, '<span style="color:#2196f3;font-weight:700">[X]</span>')
+    .replace(/\[Y\]/g, '<span style="color:#ffc107;font-weight:700">[Y]</span>');
+}
+
+// ══════════════════════════════════════════════════
 //  CAMBIO DE CLASE / SPEC
 // ══════════════════════════════════════════════════
 function changeClass() {
@@ -146,25 +166,13 @@ function filterSkills() {
       badges += `<span class="badge b-buff">Buff</span>`;
     }
 
-    // Colorear botones Xbox
-    let xboxText = s.input_xbox || '';
-    xboxText = xboxText
-      .replace(/LB/g, '<span style="color:#60a5fa;font-weight:700">LB</span>')
-      .replace(/RB/g, '<span style="color:#fbbf24;font-weight:700">RB</span>')
-      .replace(/LT/g, '<span style="color:#4ade80;font-weight:700">LT</span>')
-      .replace(/RT/g, '<span style="color:#f472b6;font-weight:700">RT</span>')
-      .replace(/\[A\]/g, '<span style="color:#4caf50;font-weight:700">[A]</span>')
-      .replace(/\[B\]/g, '<span style="color:#f44336;font-weight:700">[B]</span>')
-      .replace(/\[X\]/g, '<span style="color:#2196f3;font-weight:700">[X]</span>')
-      .replace(/\[Y\]/g, '<span style="color:#ffc107;font-weight:700">[Y]</span>');
-
     card.innerHTML = `
       <span class="icon">${s.icon}</span>
       <div class="info">
         <div class="sname">${s.nombre}</div>
         <div class="smeta">${badges}</div>
       </div>
-      <div class="xbox">${xboxText}</div>
+      <div class="xbox">${colorXbox(s.input_xbox)}</div>
     `;
     fragment.appendChild(card);
   });
@@ -299,7 +307,7 @@ function renderXboxButtons() {
       min-width: 85px;
     `;
 
-    // Botones Xbox formateados en grande
+    // Botones Xbox formateados en grande usando colorXbox()
     const xboxDiv = document.createElement('div');
     xboxDiv.style.cssText = `
       display: flex;
@@ -314,23 +322,7 @@ function renderXboxButtons() {
       white-space: nowrap;
     `;
 
-    // Colorear los botones
-    let xboxText = s.input_xbox || '';
-    xboxText = xboxText
-      .replace(/LS↑/g, '<span style="color:#e2e8f0">LS↑</span>')
-      .replace(/LS↓/g, '<span style="color:#e2e8f0">LS↓</span>')
-      .replace(/LS←/g, '<span style="color:#e2e8f0">LS←</span>')
-      .replace(/LS→/g, '<span style="color:#e2e8f0">LS→</span>')
-      .replace(/LB/g, '<span style="color:#60a5fa">LB</span>')
-      .replace(/RB/g, '<span style="color:#fbbf24">RB</span>')
-      .replace(/LT/g, '<span style="color:#4ade80">LT</span>')
-      .replace(/RT/g, '<span style="color:#f472b6">RT</span>')
-      .replace(/\[A\]/g, '<span style="color:#4caf50">[A]</span>')
-      .replace(/\[B\]/g, '<span style="color:#f44336">[B]</span>')
-      .replace(/\[X\]/g, '<span style="color:#2196f3">[X]</span>')
-      .replace(/\[Y\]/g, '<span style="color:#ffc107">[Y]</span>');
-
-    xboxDiv.innerHTML = xboxText;
+    xboxDiv.innerHTML = colorXbox(s.input_xbox);
 
     // Nombre de la skill abajo
     const nameDiv = document.createElement('div');
