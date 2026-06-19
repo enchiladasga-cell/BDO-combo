@@ -1,48 +1,51 @@
 // ══════════════════════════════════════
 //  GUARDIAN — Sucesión y Despertar
+//  Actualizado: junio 2026
+//  Arma Sucesión: Hacha + Escudo
+//  Arma Despertar: Jordun (alabarda)
 // ══════════════════════════════════════
 D.guardian = {
 
   succession: [
     {
-      nombre: 'Golpe de Hacha',
+      nombre: 'Prime: Golpe de Hacha',
       icon: '🪓',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'RB + [Y]',
-      notas: 'Skill de entrada principal. SA + knockdown, muy fiable para abrir packs.'
+      notas: 'Skill de entrada principal. SA sólida + knockdown amplio. Muy fiable para abrir packs en PvE.'
     },
     {
-      nombre: 'Carga de la Bestia',
+      nombre: 'Prime: Carga de la Bestia',
       icon: '🦁',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LT + [X]',
-      notas: 'Avance rápido con SA y stun al impacto. Buena para cerrar distancia en PvE.'
+      notas: 'Avance rápido con SA y stun al impacto. Excelente para cerrar distancia con el pack en PvE.'
     },
     {
       nombre: 'Ira Primordial',
       icon: '🔥',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'Buff AP +15',
+      buffs: 'AP +15 (15s)',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [Y]',
-      notas: 'Buff de AP importante para el burst. Activar siempre que esté disponible.'
+      notas: 'Buff de AP esencial. Activar siempre al inicio del pull para maximizar el daño del burst.'
     },
     {
-      nombre: 'Barrido Girasol',
+      nombre: 'Prime: Barrido Girasol',
       icon: '☀️',
       proteccion: 'FG',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'AoE amplio con FG. Knockdown en el área completa.'
+      notas: 'AoE 360° con FG durante el cast. Knockdown en toda el área. Skill de limpieza de packs.'
     },
     {
       nombre: 'Salto de Venganza',
@@ -52,47 +55,67 @@ D.guardian = {
       buffs: 'Ninguno',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'Salto con I-Frame. Reposicionamiento rápido y evasión de habilidades enemigas.'
+      notas: 'Salto con I-Frame. Reposicionamiento rápido y esquiva de habilidades de área enemigas.'
     },
     {
-      nombre: 'Tormenta de Acero',
+      nombre: 'Prime: Tormenta de Acero',
       icon: '🌪️',
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Reducción velocidad',
+      debuffs: 'Reducción vel. movimiento -10%',
       input_xbox: 'RB + [X]',
-      notas: 'Daño en área sostenido. Aplica debuff de velocidad al enemigo.'
+      notas: 'Daño sostenido en área. Aplica debuff de velocidad. Buena skill de relleno entre CDs.'
     },
     {
-      nombre: 'Impacto Sísmico',
+      nombre: 'Prime: Impacto Sísmico',
       icon: '💢',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
-      debuffs: 'Knockdown + Stun',
+      debuffs: 'Knockdown',
       input_xbox: 'LT + [B]',
-      notas: 'Golpe al suelo con CC doble. Excelente daño en enemigos caídos.'
+      notas: 'Golpe al suelo. Knockdown de área frontal. Excelente para rematar enemigos ya caídos.'
     },
     {
       nombre: 'Escudo Divino',
       icon: '🛡️',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'DP +20 (3s)',
+      buffs: 'Toda Defensa +20 (5s)',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [X]',
-      notas: 'Buff defensivo temporal. Usar al entrar a packs peligrosos.'
+      notas: 'Buff defensivo temporal. Usar al entrar a packs con mucho daño o en zonas de endgame.'
     },
     {
-      nombre: 'Giro de Hacha',
+      nombre: 'Prime: Giro de Hacha',
       icon: '🌀',
       proteccion: 'SA',
       cc: 'Knockback',
       buffs: 'Ninguno',
       debuffs: 'Knockback',
       input_xbox: 'LS← + [Y]',
-      notas: 'Giro de 360° con knockback. Útil para agrupar monstruos dispersos.'
+      notas: 'Giro de 360° con knockback. Útil para agrupar monstruos dispersos y resetear el pack.'
+    },
+    {
+      nombre: 'Rugido de la Bestia',
+      icon: '😤',
+      proteccion: 'SA',
+      cc: 'Stun',
+      buffs: 'Vel. ataque +10%',
+      debuffs: 'Stun',
+      input_xbox: 'LB + [B]',
+      notas: 'Stun rápido + buff de velocidad de ataque. Usar para iniciar rotación con mayor DPS.'
+    },
+    {
+      nombre: 'Absolute: Golpe de Hacha',
+      icon: '🪓💥',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'Ninguno',
+      debuffs: 'Knockdown + reducción defensa -10',
+      input_xbox: 'RB + [Y] (Absolute)',
+      notas: 'Versión absoluta. Añade reducción de defensa al knockdown. Mayor daño que la versión normal.'
     },
   ],
 
@@ -102,20 +125,20 @@ D.guardian = {
       icon: '⚡',
       proteccion: 'SA',
       cc: 'Knockdown',
-      buffs: 'Buff AP +20',
+      buffs: 'AP +20 (15s)',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'Skill de despertar más importante. SA + buff AP + knockdown. Inicio de combo obligatorio.'
+      notas: 'Skill más importante de despertar. SA + buff AP alto + knockdown de área. SIEMPRE iniciar con esta.'
     },
     {
-      nombre: 'Tormenta Sagrada',
+      nombre: 'Glorious Advance',
       icon: '🌩️',
-      proteccion: 'SA',
-      cc: 'Stun',
+      proteccion: 'FG',
+      cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Stun',
-      input_xbox: 'RB + [Y]',
-      notas: 'AoE enorme. Stun en área completa. Principal skill de daño en despertar.'
+      debuffs: 'Reducción defensa -20',
+      input_xbox: 'LB + [X]',
+      notas: 'FG durante el avance. Aplica fuerte reducción de defensa. Usar antes del burst para amplificar daño.'
     },
     {
       nombre: 'Llama de la Ira',
@@ -123,49 +146,59 @@ D.guardian = {
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Quemadura',
+      debuffs: 'Quemadura (100 daño c/3s)',
       input_xbox: 'LB + [Y]',
-      notas: 'Aplica quemadura. Buen daño continuado para packs grandes.'
+      notas: 'Aplica quemadura DOT. Buen daño sostenido para packs grandes. Usa en combinación con el burst.'
     },
     {
       nombre: 'Salto Divino',
       icon: '✨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Velocidad movimiento',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'Movilidad con I-Frame. Uso para reposicionarse rápidamente entre packs.'
+      notas: 'Movilidad con I-Frame. Esencial para reposicionarse entre packs o esquivar burst enemigo.'
     },
     {
-      nombre: 'Juicio Celestial',
+      nombre: 'God Incinerator',
       icon: '☁️',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
-      debuffs: 'Knockdown',
-      input_xbox: 'LT + [Y]',
-      notas: 'Golpe vertical de alto daño. Rematador de pack caído.'
+      debuffs: 'Knockdown + Quemadura',
+      input_xbox: 'LT + [B]',
+      notas: 'Golpe vertical de alto daño. Knockdown + DOT de quemadura. Rematador de pack caído.'
     },
     {
       nombre: 'Escudo Sagrado',
       icon: '🛡️',
       proteccion: 'FG',
       cc: 'Ninguno',
-      buffs: 'DP +30',
+      buffs: 'Toda Defensa +30 (5s)',
       debuffs: 'Ninguno',
-      input_xbox: 'LT + [B]',
-      notas: 'FG + buff DP. Usar para absorber ataques mientras se castea.'
+      input_xbox: 'LT + [X]',
+      notas: 'FG + buff de defensa alto. Usar mientras se castean skills largas en zonas de endgame.'
     },
     {
-      nombre: 'Ola de Fuego',
+      nombre: 'Searing Fang',
       icon: '🌊',
       proteccion: 'SA',
-      cc: 'Stun',
+      cc: 'Bound',
       buffs: 'Ninguno',
-      debuffs: 'Stun',
+      debuffs: 'Bound',
       input_xbox: 'RB + [X]',
-      notas: 'Proyectil de fuego con stun. Alcance largo, buena para iniciar en PvE.'
+      notas: 'Skill de área con Bound (CC especial). Útil para inmovilizar packs mientras se ejecuta el burst.'
+    },
+    {
+      nombre: 'Absolute: Descenso (Core)',
+      icon: '🌑',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'AP +25 mejorado',
+      debuffs: 'Knockdown masivo',
+      input_xbox: 'LT + RT (Core)',
+      notas: 'Core skill de Descenso de la Guardiana. Buff de AP más alto y área de knockdown mayor.'
     },
   ]
 };

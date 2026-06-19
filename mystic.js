@@ -1,78 +1,81 @@
 // ══════════════════════════════════════
 //  MYSTIC — Sucesión y Despertar
+//  Actualizado: junio 2026
+//  Arma Sucesión: Cestus (puños)
+//  Arma Despertar: Cestus de Mar
 // ══════════════════════════════════════
 D.mystic = {
 
   succession: [
     {
-      nombre: 'Golpe de Dragón de Mar',
+      nombre: 'Prime: Golpe del Dragón de Mar',
       icon: '🌊',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'LT + [Y]',
-      notas: 'Skill de entrada con SA y knockdown. Excelente para abrir packs en PvE.'
+      notas: 'Skill de entrada con SA y knockdown. Excelente para abrir packs en PvE. Base de la rotación.'
     },
     {
-      nombre: 'Presa del Kraken',
+      nombre: 'Prime: Presa del Kraken',
       icon: '🐙',
       proteccion: 'SA',
-      cc: 'Atrapamiento',
+      cc: 'Agarre (Grab)',
       buffs: 'Ninguno',
-      debuffs: 'Atrapamiento',
+      debuffs: 'Agarre + daño masivo',
       input_xbox: 'RB + [X]',
-      notas: 'CC de agarre único. Muy efectivo en PvP, también útil en PvE.'
+      notas: 'Grab único de sucesión. CC no resistible. Muy efectivo en PvP y contra jefes de zona.'
     },
     {
       nombre: 'Danza Espiritual',
       icon: '💫',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'HP Regen + Vel. ataque',
+      buffs: 'HP Regen +20 / Vel. ataque +7%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [Y]',
-      notas: 'Buff doble de HP regen y vel. ataque. Usar para mantener sostenibilidad.'
+      notas: 'Buff doble de HP regen y velocidad de ataque. Clave para sostenibilidad sin pociones.'
     },
     {
-      nombre: 'Golpe de Mariposa',
+      nombre: 'Prime: Golpe de Mariposa',
       icon: '🦋',
       proteccion: 'FG',
       cc: 'Knockback',
       buffs: 'Ninguno',
       debuffs: 'Knockback',
       input_xbox: 'LT + RT',
-      notas: 'FG durante el cast. Knockback amplio en área.'
+      notas: 'FG durante el cast. Knockback amplio en área. Útil para controlar grupos de monstruos.'
     },
     {
       nombre: 'Paso de Brisa',
       icon: '💨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Vel. movimiento',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'Evasión con I-Frame. Principal herramienta de movilidad de Mystic.'
+      notas: 'Principal movilidad de Mystic. I-Frame limpio. Encadenar con Presa del Kraken para grab rápido.'
     },
     {
-      nombre: 'Pecho de Tortuga',
+      nombre: 'Prime: Pecho de Tortuga',
       icon: '🐢',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LB + [X]',
-      notas: 'Golpe frontal con stun. Usar para CC instantáneo después de agrupamiento.'
+      notas: 'Golpe frontal con stun instantáneo. Usar para CC rápido después de agrupar el pack.'
     },
     {
-      nombre: 'Garra del Tigre',
+      nombre: 'Prime: Garra del Tigre',
       icon: '🐯',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
-      debuffs: 'Knockdown + reducción DP',
+      debuffs: 'Knockdown + reducción defensa -20',
       input_xbox: 'RB + [Y]',
-      notas: 'Ataque descendente. Aplicar reducción de DP al impactar.'
+      notas: 'Ataque descendente con SA. Reducción de defensa al impactar. Usar antes del burst principal.'
     },
     {
       nombre: 'Vórtice Marino',
@@ -82,70 +85,110 @@ D.mystic = {
       buffs: 'Ninguno',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [X]',
-      notas: 'Daño en área AoE grande. Relleno de rotación entre CDs de skills de CC.'
+      notas: 'AoE grande de relleno. Usar entre cooldowns de las skills de CC para no perder tiempo.'
+    },
+    {
+      nombre: 'Flow: Pecho de Tortuga',
+      icon: '🐢💥',
+      proteccion: 'SA',
+      cc: 'Stun',
+      buffs: 'Ninguno',
+      debuffs: 'Stun extendido',
+      input_xbox: 'LB + [X] (Flow)',
+      notas: 'Flow de Pecho de Tortuga. Encadenar inmediatamente para extender el stun y añadir daño extra.'
+    },
+    {
+      nombre: 'Absolute: Golpe del Dragón de Mar',
+      icon: '🌊💥',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'Ninguno',
+      debuffs: 'Knockdown + reducción defensa -10',
+      input_xbox: 'LT + [Y] (Absolute)',
+      notas: 'Versión absoluta con reducción de defensa adicional. Mayor área y daño que la versión base.'
     },
   ],
 
   awakening: [
     {
-      nombre: 'Ola del Océano',
+      nombre: 'Prime: Ola del Océano',
       icon: '🌊',
       proteccion: 'SA',
       cc: 'Knockdown',
-      buffs: 'Buff AP +20',
+      buffs: 'AP +20 (15s)',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'Skill de apertura de despertar. Buff AP + knockdown. Esencial al inicio.'
+      notas: 'Skill de apertura de despertar. Buff AP + knockdown masivo. SIEMPRE iniciar rotación con esta.'
     },
     {
-      nombre: 'Torbellino Acuático',
+      nombre: 'Prime: Torbellino Acuático',
       icon: '🌀',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
-      debuffs: 'Stun + reducción vel.',
-      input_xbox: 'RB + [Y]',
-      notas: 'Daño masivo en área. Stun + reducción de velocidad. Skill de mayor daño.'
+      debuffs: 'Stun + reducción vel. movimiento -10%',
+      input_xbox: 'RB + [A]',
+      notas: 'Mayor daño de la rotación de despertar. Stun + debuff de velocidad. Usar tras el knockdown.'
     },
     {
       nombre: 'Espíritu del Mar',
       icon: '🐬',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'HP Regen +30',
+      buffs: 'HP Regen +30 por golpe',
       debuffs: 'Ninguno',
-      input_xbox: 'LB + [Y]',
-      notas: 'Regeneración alta de HP. Usar para mantenerse sin pociones.'
+      input_xbox: 'LB + [X]',
+      notas: 'Regeneración alta de HP. Esencial para grindeo largo sin depender de pociones.'
     },
     {
-      nombre: 'Corriente de Corrales',
+      nombre: 'Corriente de Corales',
       icon: '🪸',
       proteccion: 'FG',
       cc: 'Knockback',
       buffs: 'Ninguno',
       debuffs: 'Knockback',
       input_xbox: 'LT + [B]',
-      notas: 'FG con knockback. Control de monstruos que se acercan.'
+      notas: 'FG con knockback. Control de monstruos que se acercan mientras se ejecutan otras habilidades.'
     },
     {
       nombre: 'Paso del Delfín',
       icon: '💨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Vel. movimiento',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'I-Frame de movilidad. Principal herramienta de reposicionamiento.'
+      notas: 'I-Frame de movilidad. Principal herramienta de reposicionamiento de despertar.'
     },
     {
-      nombre: 'Puño del Océano',
+      nombre: 'Prime: Puño del Océano',
       icon: '💪',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
-      input_xbox: 'LT + [Y]',
-      notas: 'Golpe directo de alto daño. Rematador de pack caído.'
+      input_xbox: 'LT + [X]',
+      notas: 'Golpe directo de alto daño con SA. Rematador de pack caído. Gran daño single-target.'
+    },
+    {
+      nombre: 'Agarre del Mar (Grab)',
+      icon: '🐙',
+      proteccion: 'SA',
+      cc: 'Agarre (Grab)',
+      buffs: 'Ninguno',
+      debuffs: 'Agarre + daño masivo',
+      input_xbox: 'LB + [B]',
+      notas: 'Grab de despertar. CC no resistible. Útil en PvP y contra jefes. Diferente al grab de sucesión.'
+    },
+    {
+      nombre: 'Absolute: Ola del Océano (Core)',
+      icon: '🌊🌑',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'AP +25 mejorado',
+      debuffs: 'Knockdown masivo',
+      input_xbox: 'LT + RT (Core)',
+      notas: 'Core skill: mayor buff de AP y área de knockdown más grande que la versión normal.'
     },
   ]
 };

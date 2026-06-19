@@ -1,5 +1,8 @@
 // ══════════════════════════════════════
 //  SAGE — Sucesión y Despertar
+//  Actualizado: junio 2026
+//  Arma Sucesión: Cestus de Arcana
+//  Arma Despertar: Kyve (anillos de energía)
 // ══════════════════════════════════════
 D.sage = {
 
@@ -9,20 +12,20 @@ D.sage = {
       icon: '⏰',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'Buff daño +15',
+      buffs: 'AP +15 (15s)',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [Y]',
-      notas: 'Skill de buff principal. Activar siempre que esté disponible al inicio del combo.'
+      notas: 'Buff de AP principal. Activar siempre al inicio del combo — no empezar sin este activo.'
     },
     {
-      nombre: 'Colapso Temporal',
+      nombre: 'Prime: Colapso Temporal',
       icon: '💫',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'AoE con knockdown. Skill de apertura ideal en PvE.'
+      notas: 'AoE amplia con knockdown. Skill de apertura ideal en PvE. Buena combinación con el buff de AP.'
     },
     {
       nombre: 'Teletransporte',
@@ -32,47 +35,47 @@ D.sage = {
       buffs: 'Ninguno',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'I-Frame de movilidad instantánea. Escapar o reposicionarse. Esencial.'
+      notas: 'I-Frame de movilidad instantánea. Herramienta esencial para escapar o reposicionarse en el pack.'
     },
     {
-      nombre: 'Explosión de Energía',
+      nombre: 'Prime: Explosión de Energía',
       icon: '⚡',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'RB + [Y]',
-      notas: 'Explosión en área con stun. Mayor daño de sucesión. Usar tras knockdown.'
+      notas: 'Explosión en área con stun. Mayor daño de sucesión. Usar después de knockdown del pack.'
     },
     {
       nombre: 'Barrera Temporal',
       icon: '🛡️',
       proteccion: 'FG',
       cc: 'Ninguno',
-      buffs: 'DP +20',
+      buffs: 'Toda Defensa +20 (5s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [B]',
-      notas: 'FG + buff DP. Usar al recibir presión de múltiples monstruos.'
+      notas: 'FG + buff de defensa. Usar al recibir presión de múltiples monstruos o al entrar a packs pesados.'
     },
     {
-      nombre: 'Filo del Tiempo',
+      nombre: 'Prime: Filo del Tiempo',
       icon: '⚔️',
       proteccion: 'SA',
       cc: 'Knockback',
       buffs: 'Ninguno',
-      debuffs: 'Knockback + reducción DP',
+      debuffs: 'Knockback + reducción defensa -20',
       input_xbox: 'LT + [X]',
-      notas: 'Ataque de área amplio. Reduce DP del enemigo. Usar antes del burst.'
+      notas: 'Ataque de área amplio. Reduce defensa del enemigo. Usar antes del burst para maximizar daño.'
     },
     {
-      nombre: 'Paradoja Cuántica',
+      nombre: 'Prime: Paradoja Cuántica',
       icon: '🌀',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LB + [X]',
-      notas: 'Skill de relleno con stun. Encadenar en medio del combo.'
+      notas: 'Skill de relleno con stun. Encadenar en el combo para mantener el CC y el daño activos.'
     },
     {
       nombre: 'Pulso Dimensional',
@@ -80,82 +83,112 @@ D.sage = {
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Reducción vel. ataque',
+      debuffs: 'Reducción vel. ataque -7%',
       input_xbox: 'RB + [X]',
-      notas: 'Proyectil de largo alcance. Debuff de velocidad de ataque al enemigo.'
+      notas: 'Proyectil de largo alcance. Debuff de velocidad de ataque. Bueno para iniciar desde distancia.'
+    },
+    {
+      nombre: 'Flow: Eco Temporal',
+      icon: '🔄',
+      proteccion: 'SA',
+      cc: 'Stun',
+      buffs: 'Ninguno',
+      debuffs: 'Stun extendido',
+      input_xbox: 'RB + [Y] (Flow)',
+      notas: 'Flow de Explosión de Energía. Encadenar inmediatamente tras la explosión para extender el stun.'
+    },
+    {
+      nombre: 'Absolute: Colapso Temporal',
+      icon: '💫💥',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'Ninguno',
+      debuffs: 'Knockdown + reducción defensa -10',
+      input_xbox: 'LT + RT (Absolute)',
+      notas: 'Versión absoluta con reducción de defensa adicional. Mayor área de efecto que la versión base.'
     },
   ],
 
   awakening: [
     {
-      nombre: 'Fractura del Espacio',
+      nombre: 'Prime: Fractura del Espacio',
       icon: '🌌',
       proteccion: 'SA',
       cc: 'Knockdown',
-      buffs: 'Buff AP +25',
+      buffs: 'AP +25 (15s)',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'Skill más importante de despertar. Buff AP alto + knockdown de área. Siempre iniciar con esta.'
+      notas: 'Skill más importante de despertar. Buff AP alto + knockdown de área. SIEMPRE iniciar con esta.'
     },
     {
-      nombre: 'Colapso Dimensional',
+      nombre: 'Prime: Colapso Dimensional',
       icon: '💥',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
-      debuffs: 'Stun + reducción DP -20',
-      input_xbox: 'RB + [Y]',
-      notas: 'Mayor daño de la rotación de despertar. Stun + reducción DP masiva.'
+      debuffs: 'Stun + reducción defensa -20',
+      input_xbox: 'RB + [A]',
+      notas: 'Mayor daño de la rotación de despertar. Stun + reducción de defensa masiva. Usar tras knockdown.'
     },
     {
       nombre: 'Portal de Escape',
       icon: '🚪',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Vel. movimiento',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'I-Frame de emergencia. Usar cuando seas rodeado o para reposicionamiento.'
+      notas: 'I-Frame de emergencia. Usar cuando seas rodeado o para reposicionamiento entre packs.'
     },
     {
-      nombre: 'Eco Temporal',
+      nombre: 'Regeneración Temporal',
       icon: '🔄',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'HP Regen +25',
+      buffs: 'HP Regen +25 por golpe',
       debuffs: 'Ninguno',
-      input_xbox: 'LB + [Y]',
-      notas: 'Regeneración de HP. Sostenibilidad en grindeo largo.'
+      input_xbox: 'LB + [X]',
+      notas: 'Recuperación de HP por golpe. Sostenibilidad en grindeo largo sin pociones de HP.'
     },
     {
-      nombre: 'Singularidad',
+      nombre: 'Prime: Singularidad',
       icon: '🌑',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
-      input_xbox: 'LT + [Y]',
-      notas: 'Ataque de punto singular con enorme daño. Rematador de combo.'
+      input_xbox: 'LT + [X]',
+      notas: 'Ataque de punto singular con enorme daño. Rematador de combo. Gran daño single-target.'
     },
     {
       nombre: 'Campo de Fuerza',
       icon: '🔵',
       proteccion: 'FG',
       cc: 'Ninguno',
-      buffs: 'DP +25',
+      buffs: 'Toda Defensa +25 (5s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [B]',
-      notas: 'FG + buff DP. Escudo temporal mientras se ejecuta el burst.'
+      notas: 'FG + buff de defensa. Escudo temporal mientras se ejecuta el burst principal.'
     },
     {
-      nombre: 'Corte Cuántico',
+      nombre: 'Prime: Corte Cuántico',
       icon: '✂️',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
-      input_xbox: 'LB + [X]',
-      notas: 'Ataque rápido con stun. Buen daño de relleno entre CDs principales.'
+      input_xbox: 'LB + [B]',
+      notas: 'Ataque rápido con stun. Buen daño de relleno entre cooldowns de las skills principales.'
+    },
+    {
+      nombre: 'Desgarro Dimensional',
+      icon: '🌠',
+      proteccion: 'SA',
+      cc: 'Knockback',
+      buffs: 'Ninguno',
+      debuffs: 'Knockback + reducción defensa -10',
+      input_xbox: 'RB + [X]',
+      notas: 'AoE de knockback con reducción de defensa. Usar para agrupar monstruos y debuffear antes del burst.'
     },
   ]
 };

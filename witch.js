@@ -1,28 +1,31 @@
 // ══════════════════════════════════════
 //  WITCH — Sucesión y Despertar
+//  Actualizado: junio 2026
+//  Arma Sucesión: Staff (bastón)
+//  Arma Despertar: Aad Sphera (orbe)
 // ══════════════════════════════════════
 D.witch = {
 
   succession: [
     {
-      nombre: 'Rayo de Tormenta',
+      nombre: 'Prime: Rayo de Tormenta',
       icon: '⚡',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LT + [Y]',
-      notas: 'Hechizo eléctrico con stun de área. Skill de inicio de combo principal.'
+      notas: 'Hechizo eléctrico con stun de área. Skill de inicio de combo principal en sucesión.'
     },
     {
-      nombre: 'Meteoro',
+      nombre: 'Prime: Meteoro',
       icon: '☄️',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'RB + [Y]',
-      notas: 'Mayor daño de sucesión. Knockdown masivo. Usar con pack ya agrupado.'
+      notas: 'Mayor daño de sucesión. Knockdown masivo de área. Usar con el pack ya agrupado y stunneado.'
     },
     {
       nombre: 'Teletransporte Mágico',
@@ -32,67 +35,87 @@ D.witch = {
       buffs: 'Ninguno',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'I-Frame de movilidad. Permite reposicionarse sin recibir daño.'
+      notas: 'I-Frame de movilidad. Permite reposicionarse sin recibir daño durante el cast de hechizos.'
     },
     {
       nombre: 'Aura de Poder',
       icon: '✨',
       proteccion: 'SA',
       cc: 'Ninguno',
-      buffs: 'AP +20 / Vel. cast +10%',
+      buffs: 'AP +20 / Vel. casteo +10% (30s)',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [Y]',
-      notas: 'Buff doble esencial. Activar siempre al inicio. Dura 30 segundos.'
+      notas: 'Buff doble esencial. Activar siempre al inicio — dura 30 segundos. Base del daño de Witch.'
     },
     {
-      nombre: 'Torrente Helado',
+      nombre: 'Prime: Torrente Helado',
       icon: '❄️',
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Congelación (lentitud)',
+      debuffs: 'Lentitud severa -15%',
       input_xbox: 'LT + [X]',
-      notas: 'Ralentiza a los enemigos. Usar para controlar grupos de monstruos grandes.'
+      notas: 'Ralentiza severamente al pack. Usar para controlar grupos grandes y facilitar el posicionamiento.'
     },
     {
       nombre: 'Escudo Arcano',
       icon: '🔵',
       proteccion: 'FG',
       cc: 'Ninguno',
-      buffs: 'DP +20',
+      buffs: 'Toda Defensa +20 (5s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [B]',
-      notas: 'FG + buff DP. Usar al castear spells largos en packs peligrosos.'
+      notas: 'FG + buff de defensa. Usar al castear spells largos en packs peligrosos de endgame.'
     },
     {
-      nombre: 'Explosión de Tierra',
+      nombre: 'Prime: Explosión de Tierra',
       icon: '💥',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'LB + [X]',
-      notas: 'AoE de tierra. Knockdown en área amplia. Usar tras pull de monstruos.'
+      notas: 'AoE de tierra con knockdown amplio. Usar tras pull de monstruos para derribar todo el pack.'
     },
     {
-      nombre: 'Cadena de Relámpagos',
+      nombre: 'Prime: Cadena de Relámpagos',
       icon: '🌩️',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'RB + [X]',
-      notas: 'Rayo que rebota entre enemigos. Excelente en packs densos.'
+      notas: 'Rayo que rebota entre enemigos cercanos. Excelente en packs densos. Gran daño por bounce.'
     },
     {
-      nombre: 'Sanación de Grupo',
+      nombre: 'Sanación Arcana',
       icon: '💚',
       proteccion: 'Ninguna',
       cc: 'Ninguno',
-      buffs: 'HP Regen grupal',
+      buffs: 'HP Regen +30 (auto)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [A]',
-      notas: 'Regeneración de HP. Uso en solitario para sostenibilidad entre packs.'
+      notas: 'Regeneración de HP. Uso en solitario para sostenibilidad entre packs. No tiene protección.'
+    },
+    {
+      nombre: 'Absolute: Meteoro',
+      icon: '☄️💥',
+      proteccion: 'SA',
+      cc: 'Knockdown',
+      buffs: 'Ninguno',
+      debuffs: 'Knockdown + quemadura (100 daño c/3s)',
+      input_xbox: 'RB + [Y] (Absolute)',
+      notas: 'Versión absoluta del Meteoro. Añade quemadura DOT. Mayor daño y área de efecto.'
+    },
+    {
+      nombre: 'Prime: Tornado',
+      icon: '🌪️',
+      proteccion: 'SA',
+      cc: 'Knockback',
+      buffs: 'Ninguno',
+      debuffs: 'Knockback',
+      input_xbox: 'LS↑ + RB',
+      notas: 'Tornados de viento con knockback amplio. Skill icónica de Witch. Buena para reagrupar monstruos.'
     },
   ],
 
@@ -102,20 +125,20 @@ D.witch = {
       icon: '💫',
       proteccion: 'SA',
       cc: 'Knockdown',
-      buffs: 'Buff AP +20',
+      buffs: 'AP +20 (15s)',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'Skill de apertura de despertar. Enorme AoE + buff AP. Iniciar siempre con esta.'
+      notas: 'Skill de apertura de despertar. AoE enorme + buff AP. SIEMPRE iniciar rotación con esta.'
     },
     {
-      nombre: 'Lluvia de Meteoritos',
+      nombre: 'Prime: Lluvia de Meteoritos',
       icon: '🌧️',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
-      input_xbox: 'RB + [Y]',
-      notas: 'Mayor daño de la rotación de despertar. AoE masivo con stun.'
+      input_xbox: 'RB + [A]',
+      notas: 'Mayor daño de la rotación de despertar. AoE masivo con stun. Usar tras el knockdown del pack.'
     },
     {
       nombre: 'Tormenta Eléctrica',
@@ -123,19 +146,19 @@ D.witch = {
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Reducción DP -20',
-      input_xbox: 'LB + [Y]',
-      notas: 'Hechizo de área que aplica reducción de DP. Usar antes del burst principal.'
+      debuffs: 'Reducción defensa -20',
+      input_xbox: 'LB + [X]',
+      notas: 'AoE eléctrico que aplica reducción de defensa. Usar antes del burst principal para amplificar daño.'
     },
     {
       nombre: 'Parpadeo Arcano',
       icon: '💨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Vel. movimiento',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'I-Frame de escape. Usar cuando el pack sobrepase a la Witch.'
+      notas: 'I-Frame de escape. Usar cuando el pack supere a la Witch o para cancelar animaciones largas.'
     },
     {
       nombre: 'Ventisca',
@@ -143,19 +166,19 @@ D.witch = {
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Lentitud severa',
+      debuffs: 'Lentitud severa -15%',
       input_xbox: 'LT + [X]',
-      notas: 'Control masivo de monstruos. Lentitud severa para facilitar el grindeo.'
+      notas: 'Control de área masivo. Lentitud severa que facilita posicionarse y rematar el pack caído.'
     },
     {
       nombre: 'Barrera Mágica',
       icon: '🔮',
       proteccion: 'FG',
       cc: 'Ninguno',
-      buffs: 'DP +30',
+      buffs: 'Toda Defensa +30 (5s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [B]',
-      notas: 'FG + DP alto. Usar mientras se castean spells pesados.'
+      notas: 'FG + buff de defensa alto. Usar mientras se castean hechizos pesados en zonas de alto riesgo.'
     },
     {
       nombre: 'Llamarada Arcana',
@@ -163,9 +186,19 @@ D.witch = {
       proteccion: 'SA',
       cc: 'Knockback',
       buffs: 'Ninguno',
-      debuffs: 'Knockback + Quemadura',
+      debuffs: 'Knockback + quemadura (100 daño c/3s)',
       input_xbox: 'LT + [Y]',
-      notas: 'Knockback + DOT de quemadura. Útil para packs resistentes.'
+      notas: 'Knockback + DOT de quemadura. Útil para packs con monstruos resistentes. Buen daño sostenido.'
+    },
+    {
+      nombre: 'Lightning Storm',
+      icon: '🌩️⚡',
+      proteccion: 'SA',
+      cc: 'Stun',
+      buffs: 'Ninguno',
+      debuffs: 'Stun',
+      input_xbox: 'RB + [X]',
+      notas: 'Skill icónica de Witch despertar. Gran área eléctrica con stun. Alta prioridad en la rotación.'
     },
   ]
 };

@@ -1,8 +1,10 @@
 // ══════════════════════════════════════
 //  MAEGU — Sucesión y Despertar
-//  Botones Xbox: LB/RB = modificadores
-//  LT=Shift | LB=Q | RT=F | RB=E
-//  [A]=Espacio [B]=S+skill [X]=W+skill [Y]=skill
+//  Actualizado: junio 2026
+//  Arma Sucesión: Charm (Fox Spirit)
+//  Arma Despertar: Foxtail Fan (dual)
+//  Modificadores Xbox: LT=Shift | LB=Q | RT=F | RB=E
+//  Botones: [A]=Espacio [B]=S [X]=W [Y]=skill base
 // ══════════════════════════════════════
 D.maegu = {
 
@@ -13,9 +15,9 @@ D.maegu = {
       proteccion: 'SA',
       cc: 'Ninguno',
       buffs: 'Invoca clon / debuff evasión',
-      debuffs: 'Ninguno',
+      debuffs: 'Reducción evasión',
       input_xbox: 'LS← / LS→ + [Y]',
-      notas: 'Skill de entrada clave. Invoca clon y aplica debuff de evasión al enemigo. Cancela en Prime: Espíritu Engañoso.'
+      notas: 'Skill de entrada clave. Invoca clon fantasmal y aplica debuff de evasión. Cancela animación en Prime: Espíritu Engañoso.'
     },
     {
       nombre: 'Prime: Espíritu Engañoso',
@@ -25,47 +27,47 @@ D.maegu = {
       buffs: 'Ninguno',
       debuffs: 'Atrapamiento',
       input_xbox: 'LB + [Y]',
-      notas: 'CC principal de sucesión. Cancela animación con RS↑ para moverse.'
+      notas: 'CC principal de sucesión. Cancela animación con RS↑. Usa el clon para confundir al enemigo.'
     },
     {
-      nombre: 'Giro Espiritual',
+      nombre: 'Prime: Giro Espiritual',
       icon: '🌀',
       proteccion: 'SA',
       cc: 'Knockdown',
       buffs: 'Ninguno',
       debuffs: 'Knockdown',
       input_xbox: 'LT + RT',
-      notas: 'Buen daño en área. Usar después de inmovilizar pack.'
+      notas: 'AoE de área media. Knockdown al pack completo. Usar tras agrupar con Garras Desnudas.'
     },
     {
       nombre: 'Prime: Paso del Espíritu',
       icon: '💨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Buff de evasión',
+      buffs: 'Buff evasión +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'Reposicionamiento con I-Frame. Cancela en Giro Espiritual para SA instantánea.'
+      notas: 'Reposicionamiento con I-Frame. Cancela en Giro Espiritual para encadenar SA inmediatamente.'
     },
     {
       nombre: 'Vuelo del Zorro',
       icon: '🦅',
       proteccion: 'Ninguna',
       cc: 'Ninguno',
-      buffs: 'Buff AP +10',
+      buffs: 'AP +10 (10s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [Y]',
-      notas: 'Buff de AP importante. Usar al inicio del combo para amplificar el daño.'
+      notas: 'Buff de AP esencial. Activar siempre al inicio del combo para amplificar el burst.'
     },
     {
-      nombre: 'Tormenta de Abanicos',
+      nombre: 'Prime: Tormenta de Abanicos',
       icon: '🌪️',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'RB + [X]',
-      notas: 'Buen daño en área con stun. Úsala para rematar pack caído.'
+      notas: 'Buen daño AoE con stun. Usar para rematar pack caído o stunear al iniciar.'
     },
     {
       nombre: 'Vuelta de Zorro',
@@ -75,17 +77,17 @@ D.maegu = {
       buffs: 'Ninguno',
       debuffs: 'Ninguno',
       input_xbox: 'LS↓ + [Y]',
-      notas: 'Movimiento hacia atrás con FG. Útil para salir de situaciones peligrosas.'
+      notas: 'Retroceso con FG. Útil para absorber golpes y reposicionarse ante packs peligrosos.'
     },
     {
-      nombre: 'Abanico Fantasmal',
+      nombre: 'Prime: Abanico Fantasmal',
       icon: '🪩',
       proteccion: 'SA',
       cc: 'Knockback',
       buffs: 'Ninguno',
       debuffs: 'Knockback',
       input_xbox: 'LT + [X]',
-      notas: 'Knockback amplio. Usar para agrupar o separar enemigos.'
+      notas: 'Knockback de área amplia. Usar para reagrupar monstruos dispersos hacia el centro.'
     },
     {
       nombre: 'Intercambio con Clon',
@@ -95,7 +97,7 @@ D.maegu = {
       buffs: 'Reposicionamiento',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [B]',
-      notas: 'Teletransporte al clon con I-Frame instantáneo. Clon debe estar activo.'
+      notas: 'Teletransporte al clon con I-Frame. El clon debe estar activo (invocado con Garras Desnudas).'
     },
     {
       nombre: 'Lágrima del Alma',
@@ -105,7 +107,27 @@ D.maegu = {
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LS↑ + LB',
-      notas: 'Habilidad de largo alcance. Buena para iniciar desde lejos.'
+      notas: 'Skill de largo alcance. Buena para iniciar desde lejos antes de entrar al pack.'
+    },
+    {
+      nombre: 'Flow: Alma del Zorro',
+      icon: '🌸',
+      proteccion: 'SA',
+      cc: 'Ninguno',
+      buffs: 'AP +5 adicional',
+      debuffs: 'Ninguno',
+      input_xbox: 'RB + [Y]',
+      notas: 'Flow cancelación de Vuelo del Zorro. Encadenar inmediatamente después del buff para no perder tiempo.'
+    },
+    {
+      nombre: 'Absolute: Garras Desnudas',
+      icon: '🦊💥',
+      proteccion: 'SA',
+      cc: 'Atrapamiento',
+      buffs: 'Clon mejorado',
+      debuffs: 'Atrapamiento + reducción evasión',
+      input_xbox: 'LS← / LS→ + [Y] (Absolute)',
+      notas: 'Versión absoluta de Garras Desnudas. El clon invocado hace más daño y el debuff de evasión es mayor.'
     },
   ],
 
@@ -118,37 +140,37 @@ D.maegu = {
       buffs: 'Activa Spiritforged',
       debuffs: 'Ninguno',
       input_xbox: 'LT + RT',
-      notas: 'Skill de apertura. Activa estado Spiritforged que potencia skills siguientes. Usar x2 cancela el estado.'
+      notas: 'Skill de apertura obligatoria. Activa estado Spiritforged que potencia las skills siguientes. Usar x2 cancela el estado.'
     },
     {
-      nombre: 'Danza de los Espíritus',
+      nombre: 'Prime: Danza de los Espíritus',
       icon: '💃',
       proteccion: 'SA',
       cc: 'Knockdown',
-      buffs: 'Buff daño crítico (Spiritforged)',
+      buffs: 'Daño crítico (dentro de Spiritforged)',
       debuffs: 'Knockdown',
       input_xbox: 'RB + [A]',
-      notas: 'CC principal de despertar. Usar dentro de Spiritforged para bonus de crítico.'
+      notas: 'CC principal de despertar. Usar dentro de estado Spiritforged para el bonus de daño crítico.'
     },
     {
-      nombre: 'Abanico de Zorro Dorado',
+      nombre: 'Prime: Abanico de Zorro Dorado',
       icon: '🌟',
       proteccion: 'SA',
       cc: 'Stun',
       buffs: 'Ninguno',
       debuffs: 'Stun',
       input_xbox: 'LB + [X]',
-      notas: 'Daño alto + stun. Skill de daño principal en despertar.'
+      notas: 'Skill de mayor daño en despertar. Stun amplio. Usar tras el knockdown del pack.'
     },
     {
-      nombre: 'Paso de Espíritu',
+      nombre: 'Prime: Paso de Espíritu',
       icon: '💨',
       proteccion: 'I-Frame',
       cc: 'Ninguno',
-      buffs: 'Buff velocidad',
+      buffs: 'Vel. movimiento +10%',
       debuffs: 'Ninguno',
       input_xbox: 'LB + [A]',
-      notas: 'Evasión con I-Frame. Cancela animaciones largas. Sale del estado Spiritforged.'
+      notas: 'Evasión con I-Frame. Cancela animaciones largas. Sale del estado Spiritforged — usarlo con cuidado.'
     },
     {
       nombre: 'Mariposa de Fuego',
@@ -156,29 +178,49 @@ D.maegu = {
       proteccion: 'FG',
       cc: 'Ninguno',
       buffs: 'Ninguno',
-      debuffs: 'Reducción DP',
+      debuffs: 'Reducción defensa -20',
       input_xbox: 'LT + [B]',
-      notas: 'Aplica reducción de DP al enemigo. Usar antes del burst principal.'
+      notas: 'FG + debuff de defensa. Usar antes del burst principal para amplificar el daño del equipo.'
     },
     {
-      nombre: 'Explosión Zorruna',
+      nombre: 'Prime: Explosión Zorruna',
       icon: '💥',
       proteccion: 'SA',
       cc: 'Knockback',
       buffs: 'Ninguno',
       debuffs: 'Knockback',
-      input_xbox: 'RB + [Y]',
-      notas: 'Daño en área grande. Ideal para limpiar packs agrupados.'
+      input_xbox: 'RB + [B]',
+      notas: 'AoE grande con knockback. Ideal para limpiar packs agrupados o separar monstruos.'
     },
     {
       nombre: 'Vuelo del Abanico',
       icon: '🏹',
       proteccion: 'Ninguna',
       cc: 'Ninguno',
-      buffs: 'Buff AP',
+      buffs: 'AP +10 (10s)',
       debuffs: 'Ninguno',
       input_xbox: 'LT + [Y]',
-      notas: 'Buff de AP. Usar al inicio de rotación.'
+      notas: 'Buff de AP. Activar al inicio de cada rotación para mantener el bonus activo.'
+    },
+    {
+      nombre: 'Flow: Danza Eterna',
+      icon: '🎭',
+      proteccion: 'SA',
+      cc: 'Stun',
+      buffs: 'Ninguno',
+      debuffs: 'Stun',
+      input_xbox: 'RB + [X] (Flow)',
+      notas: 'Flow de Abanico de Zorro Dorado. Encadenar inmediatamente para extender el stun y añadir daño extra.'
+    },
+    {
+      nombre: 'Intercambio de Sombras',
+      icon: '🔀',
+      proteccion: 'I-Frame',
+      cc: 'Ninguno',
+      buffs: 'Reposicionamiento',
+      debuffs: 'Ninguno',
+      input_xbox: 'LB + [B]',
+      notas: 'Swap de posición con el clon de despertar. I-Frame durante el intercambio.'
     },
   ]
 };

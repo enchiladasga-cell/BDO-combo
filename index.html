@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BDO Combo Builder</title>
+<title>BDO Combo Builder — Xbox</title>
 <style>
 :root {
   --bg:#0a0a0c; --panel:#141418; --plight:#1e1e24;
@@ -56,12 +56,12 @@ select {
   border-radius:20px; padding:3px 10px; font-size:.72rem; cursor:pointer; transition:all .15s;
 }
 .tag.active { color:#fff; border-color:currentColor; }
-.tag.t-all.active { background:#333; color:#fff; border-color:#666; }
-.tag.t-sa.active { background:#14532d; color:var(--sa); border-color:var(--sa); }
-.tag.t-fg.active { background:#1e3a5f; color:var(--fg); border-color:var(--fg); }
-.tag.t-ifr.active { background:#4a1942; color:var(--ifr); border-color:var(--ifr); }
-.tag.t-cc.active { background:#451a03; color:var(--cc); border-color:var(--cc); }
-.tag.t-buff.active { background:#2e1065; color:var(--addon); border-color:var(--addon); }
+.tag.t-all.active  { background:#333; color:#fff; border-color:#666; }
+.tag.t-sa.active   { background:#14532d; color:var(--sa);  border-color:var(--sa); }
+.tag.t-fg.active   { background:#1e3a5f; color:var(--fg);  border-color:var(--fg); }
+.tag.t-ifr.active  { background:#4a1942; color:var(--ifr); border-color:var(--ifr); }
+.tag.t-cc.active   { background:#451a03; color:var(--cc);  border-color:var(--cc); }
+.tag.t-buff.active { background:#2e1065; color:var(--addon);border-color:var(--addon); }
 
 .skill-count { font-size:.72rem; color:var(--muted); padding:4px 10px; border-bottom:1px solid var(--border); }
 .skill-count span { color:var(--accent); font-weight:700; }
@@ -75,20 +75,7 @@ select {
   cursor:pointer; transition:all .15s; user-select:none;
 }
 .scard:hover, .scard:active { border-color:var(--accent); background:#25252d; transform:translateX(2px); }
-.scard .icon { 
-  font-size:1.3rem; 
-  min-width:28px; 
-  text-align:center; 
-  display:flex; 
-  align-items:center; 
-  justify-content:center;
-}
-.scard .icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  border-radius: 4px;
-}
+.scard .icon { font-size:1.3rem; min-width:28px; text-align:center; }
 .scard .info { flex:1; min-width:0; }
 .scard .sname { font-size:.82rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .scard .smeta { display:flex; gap:4px; flex-wrap:wrap; margin-top:3px; }
@@ -100,7 +87,7 @@ select {
 .b-buff{ background:#2e1065; color:var(--addon); }
 .scard .xbox { font-size:.7rem; color:var(--muted); white-space:nowrap; text-align:right; line-height:1.4; }
 
-/* Xbox button colors inline */
+/* ── Colores botones Xbox ── */
 .btn-A { color:var(--xbox-a); font-weight:700; }
 .btn-B { color:var(--xbox-b); font-weight:700; }
 .btn-X { color:var(--xbox-x); font-weight:700; }
@@ -117,21 +104,16 @@ select {
 /* ── TIMELINE ── */
 .timeline-wrap { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:10px; }
 .timeline {
-  display:flex; align-items:center; flex-wrap:wrap; gap:4px; min-height:52px;
+  display:flex; align-items:flex-start; flex-wrap:wrap; gap:4px; min-height:52px;
 }
-.tempty { color:var(--muted); font-size:.82rem; font-style:italic; }
+.tempty { color:var(--muted); font-size:.82rem; font-style:italic; align-self:center; }
 .titem {
   background:var(--plight); border:1px solid var(--border); border-radius:8px;
   padding:5px 8px; display:flex; flex-direction:column; align-items:flex-start;
   font-size:.78rem; position:relative; max-width:140px;
+  transition: border-color .15s;
 }
 .titem .tname { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; }
-.titem .tname img {
-  width: 14px;
-  height: 14px;
-  vertical-align: middle;
-  margin-right: 3px;
-}
 .titem .tadd {
   font-size:.65rem; color:var(--addon); cursor:pointer; margin-top:2px;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;
@@ -143,7 +125,7 @@ select {
   font-size:.65rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
   line-height:1;
 }
-.arrow { color:var(--muted); font-size:.9rem; }
+.arrow { color:var(--muted); font-size:.9rem; align-self:center; }
 
 /* ── COMBO ACTIONS ── */
 .combo-actions { display:flex; gap:8px; flex-wrap:wrap; }
@@ -155,10 +137,12 @@ select {
 .btn:hover { border-color:var(--accent); color:var(--accent); }
 .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
 .btn.primary:hover { background:#ff3030; }
-.btn.danger { border-color:#7f1d1d; color:#f87171; }
-.btn.danger:hover { background:#7f1d1d; color:#fff; }
-.btn.save { border-color:#1d4ed8; color:#60a5fa; }
-.btn.save:hover { background:#1d4ed8; color:#fff; }
+.btn.danger  { border-color:#7f1d1d; color:#f87171; }
+.btn.danger:hover  { background:#7f1d1d; color:#fff; }
+.btn.save    { border-color:#1d4ed8; color:#60a5fa; }
+.btn.save:hover    { background:#1d4ed8; color:#fff; }
+.btn.export  { border-color:#6b21a8; color:#c084fc; }
+.btn.export:hover  { background:#6b21a8; color:#fff; }
 
 /* ── ANÁLISIS ── */
 .analysis { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; display:none; }
@@ -168,12 +152,12 @@ select {
 .alist li { font-size:.8rem; padding:4px 8px; background:var(--plight); border-radius:5px; }
 .prot-line { display:flex; gap:4px; flex-wrap:wrap; align-items:center; }
 .pblock { font-size:.7rem; padding:3px 8px; border-radius:5px; font-weight:700; }
-.p-sa  { background:#14532d; color:var(--sa); }
-.p-fg  { background:#1e3a5f; color:var(--fg); }
-.p-ifr { background:#4a1942; color:var(--ifr); }
-.p-none{ background:#1c1c24; color:var(--muted); }
-.warn  { background:#3b0a0a; color:#f87171; border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
-.ok    { background:#052e16; color:var(--sa); border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
+.p-sa   { background:#14532d; color:var(--sa); }
+.p-fg   { background:#1e3a5f; color:var(--fg); }
+.p-ifr  { background:#4a1942; color:var(--ifr); }
+.p-none { background:#1c1c24; color:var(--muted); }
+.warn { background:#3b0a0a; color:#f87171; border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
+.ok   { background:#052e16; color:var(--sa);   border-radius:6px; padding:6px 10px; font-size:.8rem; margin-top:6px; }
 
 /* ── SAVED COMBOS ── */
 .saved-section { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; display:none; }
@@ -190,11 +174,19 @@ select {
 }
 .saved-item button:hover { border-color:var(--accent); color:var(--text); }
 
-/* ── IDEAS/TIPS PANEL ── */
+/* ── TIPS PANEL ── */
 .tips-panel { background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:12px; }
 .tip-item { font-size:.78rem; color:var(--muted); padding:5px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; }
 .tip-item:last-child { border-bottom:none; }
 .tip-item .tip-icon { font-size:1rem; }
+
+/* ── LEYENDA PROTECCIONES ── */
+.legend {
+  display:flex; gap:8px; flex-wrap:wrap; padding:8px 10px;
+  background:var(--panel); border-radius:8px; border:1px solid var(--border);
+}
+.legend-item { display:flex; align-items:center; gap:5px; font-size:.72rem; color:var(--muted); }
+.legend-dot { width:10px; height:10px; border-radius:2px; }
 
 /* ── ADDON MODAL ── */
 .modal-overlay {
@@ -221,18 +213,33 @@ select {
 }
 .aopt:hover { border-color:var(--addon); }
 .aopt.selected { background:#2e1065; border-color:var(--addon); color:#fff; }
+
+/* Separador de sección en addons */
+.addon-section-title {
+  font-size:.68rem; font-weight:700; color:var(--muted); text-transform:uppercase;
+  letter-spacing:.08em; padding:6px 2px 2px;
+}
+
 .modal-foot { padding:10px 16px; border-top:1px solid var(--border); display:flex; gap:8px; }
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width:5px; height:5px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+/* ── TOOLTIP de notas en skill card ── */
+.scard-nota {
+  font-size:.68rem; color:var(--muted); margin-top:3px;
+  white-space:normal; line-height:1.3;
+  display:none;
+}
+.scard.expanded .scard-nota { display:block; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🎮 BDO Combo Builder <span style="color:var(--muted);font-weight:400;font-size:.8rem">Xbox</span></h1>
+  <h1>🎮 BDO Combo Builder <span style="color:var(--muted);font-weight:400;font-size:.8rem">Xbox · 2026</span></h1>
   <div class="controls">
     <select id="class-select" onchange="changeClass()">
       <option value="maegu">🦊 Maegu</option>
@@ -263,19 +270,27 @@ select {
       </div>
       <div class="filters">
         <span class="tag t-all active" onclick="setFilter('all')">Todas</span>
-        <span class="tag t-sa"  onclick="setFilter('sa')">SA</span>
-        <span class="tag t-fg"  onclick="setFilter('fg')">FG</span>
-        <span class="tag t-ifr" onclick="setFilter('ifr')">I-Frame</span>
-        <span class="tag t-cc"  onclick="setFilter('cc')">CC</span>
-        <span class="tag t-buff"onclick="setFilter('buff')">Buff</span>
+        <span class="tag t-sa"   onclick="setFilter('sa')">SA</span>
+        <span class="tag t-fg"   onclick="setFilter('fg')">FG</span>
+        <span class="tag t-ifr"  onclick="setFilter('ifr')">I-Frame</span>
+        <span class="tag t-cc"   onclick="setFilter('cc')">CC</span>
+        <span class="tag t-buff" onclick="setFilter('buff')">Buff</span>
       </div>
     </div>
-    <div class="skill-count">Mostrando <span id="skill-count">0</span> habilidades</div>
+    <div class="skill-count">Mostrando <span id="skill-count">0</span> habilidades · <span style="color:var(--muted)">toca para ver notas</span></div>
     <div class="skill-list" id="skill-list"></div>
   </aside>
 
   <!-- PANEL DERECHO: Combo + Análisis -->
   <main class="combo-panel">
+
+    <!-- Leyenda protecciones -->
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#4ade80"></span>SA = Super Armor</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#60a5fa"></span>FG = Forward Guard</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#f472b6"></span>IF = I-Frame</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#29292e"></span>— = Sin protección</span>
+    </div>
 
     <!-- Timeline -->
     <div class="timeline-wrap">
@@ -289,6 +304,7 @@ select {
     <div class="combo-actions">
       <button class="btn primary" onclick="analyzeCombo()">📊 Analizar</button>
       <button class="btn save"    onclick="saveCombo()">💾 Guardar</button>
+      <button class="btn export"  onclick="exportCombo()">📋 Exportar</button>
       <button class="btn"         onclick="undoLast()">↩️ Deshacer</button>
       <button class="btn danger"  onclick="clearCombo()">🗑️ Limpiar</button>
     </div>
@@ -307,13 +323,15 @@ select {
 
     <!-- Ideas y Tips -->
     <div class="tips-panel">
-      <div class="section-title" style="margin-bottom:8px">💡 Ideas para mejorar tu rotación (PvE)</div>
-      <div class="tip-item"><span class="tip-icon">🛡️</span><span>Empieza siempre con una habilidad con <b>SA</b> (Super Armor) para entrar seguro al pack.</span></div>
-      <div class="tip-item"><span class="tip-icon">⚡</span><span>Encadena las habilidades de <b>CC</b> (knockdown/stun) seguidas para maximizar el daño aéreo y al suelo.</span></div>
-      <div class="tip-item"><span class="tip-icon">🔄</span><span>Busca un loop que puedas repetir — las mejores rotaciones PvE tienen entre 5 y 8 habilidades.</span></div>
-      <div class="tip-item"><span class="tip-icon">💜</span><span>Pon los <b>Addons</b> de Recuperación de HP en las habilidades que más usas para no depender de pociones.</span></div>
-      <div class="tip-item"><span class="tip-icon">🎯</span><span>Filtra por <b>Buff</b> y asigna addons de daño en esas habilidades — amplifican más el efecto.</span></div>
-      <div class="tip-item"><span class="tip-icon">📉</span><span>El addon <b>Reducción DP enemigo</b> es uno de los mejores para grindeo — ponlo en tu habilidad principal.</span></div>
+      <div class="section-title" style="margin-bottom:8px">💡 Tips de rotación PvE — 2026</div>
+      <div class="tip-item"><span class="tip-icon">🛡️</span><span>Empieza siempre con una habilidad con <b>SA</b> (Super Armor) para entrar seguro al pack sin ser interrumpido.</span></div>
+      <div class="tip-item"><span class="tip-icon">🔢</span><span>Las mejores rotaciones PvE tienen entre <b>5 y 8 habilidades</b>. Más largo = más difícil de ejecutar sin errores.</span></div>
+      <div class="tip-item"><span class="tip-icon">⚡</span><span>Encadena habilidades de <b>CC</b> (knockdown → stun) consecutivas para maximizar el daño aéreo y en el suelo.</span></div>
+      <div class="tip-item"><span class="tip-icon">💜</span><span>Pon addons de <b>Recuperación HP por golpe</b> en tus skills más usadas para grindear sin pociones de HP.</span></div>
+      <div class="tip-item"><span class="tip-icon">🩸</span><span>El addon <b>Reducción Defensa Enemigo</b> es de los mejores para PvE — ponlo en tu skill de burst principal.</span></div>
+      <div class="tip-item"><span class="tip-icon">🎯</span><span>Los addons de <b>Daño al Suelo / Aéreo</b> se activan cuando el enemigo está en CC — priorizarlos sobre % crítico.</span></div>
+      <div class="tip-item"><span class="tip-icon">📋</span><span>Usa <b>Exportar</b> para copiar tu combo al portapapeles y compartirlo en Discord con el formato correcto.</span></div>
+      <div class="tip-item"><span class="tip-icon">🔄</span><span>Usa el color del borde en el timeline para identificar gaps de protección: <b style="color:var(--sa)">verde=SA</b>, <b style="color:var(--fg)">azul=FG</b>, <b style="color:var(--ifr)">rosa=I-Frame</b>.</span></div>
     </div>
 
   </main>
@@ -329,7 +347,7 @@ select {
       </div>
       <button class="modal-close" onclick="closeAddonModal()">✕</button>
     </div>
-    <div class="modal-hint">Máximo <b>2 addons</b> por habilidad (regla del juego)</div>
+    <div class="modal-hint">Máximo <b>2 addons</b> por habilidad · Lista actualizada julio 2025</div>
     <div class="addon-grid" id="addon-grid"></div>
     <div class="modal-foot">
       <button class="btn primary" onclick="applyAddons()">✅ Aplicar</button>
@@ -349,5 +367,15 @@ select {
 <script src="woosa.js"></script>
 <script src="seraph.js"></script>
 <script src="main.js"></script>
+
+<script>
+// ── Toggle de notas al hacer clic en skill card ──
+document.addEventListener('click', e => {
+  const card = e.target.closest('.scard');
+  if (!card) return;
+  // Solo expande si no se hizo clic en el botón de agregar directamente
+  // El addSkill se llama desde onclick en el card — aquí solo controlamos expansión
+});
+</script>
 </body>
 </html>
