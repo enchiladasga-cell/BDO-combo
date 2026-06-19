@@ -146,11 +146,17 @@ function filterSkills() {
       badges += `<span class="badge b-buff">Buff</span>`;
     }
 
-    const colorInput = (str) => str
-      .replace(/\[A\]/g, '<span class="btn-A">[A]</span>')
-      .replace(/\[B\]/g, '<span class="btn-B">[B]</span>')
-      .replace(/\[X\]/g, '<span class="btn-X">[X]</span>')
-      .replace(/\[Y\]/g, '<span class="btn-Y">[Y]</span>');
+    // Colorear botones Xbox
+    let xboxText = s.input_xbox || '';
+    xboxText = xboxText
+      .replace(/LB/g, '<span style="color:#60a5fa;font-weight:700">LB</span>')
+      .replace(/RB/g, '<span style="color:#fbbf24;font-weight:700">RB</span>')
+      .replace(/LT/g, '<span style="color:#4ade80;font-weight:700">LT</span>')
+      .replace(/RT/g, '<span style="color:#f472b6;font-weight:700">RT</span>')
+      .replace(/\[A\]/g, '<span style="color:#4caf50;font-weight:700">[A]</span>')
+      .replace(/\[B\]/g, '<span style="color:#f44336;font-weight:700">[B]</span>')
+      .replace(/\[X\]/g, '<span style="color:#2196f3;font-weight:700">[X]</span>')
+      .replace(/\[Y\]/g, '<span style="color:#ffc107;font-weight:700">[Y]</span>');
 
     card.innerHTML = `
       <span class="icon">${s.icon}</span>
@@ -158,7 +164,7 @@ function filterSkills() {
         <div class="sname">${s.nombre}</div>
         <div class="smeta">${badges}</div>
       </div>
-      <div class="xbox">${colorInput(s.input_xbox || '')}</div>
+      <div class="xbox">${xboxText}</div>
     `;
     fragment.appendChild(card);
   });
@@ -205,15 +211,9 @@ function renderTimeline() {
 
   if (combo.length === 0) {
     tl.innerHTML = '<span class="tempty">Vacío — toca una habilidad para agregarla</span>';
-    renderXboxButtons(); // Limpiar botones
+    renderXboxButtons();
     return;
   }
-
-  const colorInput = (str) => (str || '')
-    .replace(/\[A\]/g, '<span class="btn-A">[A]</span>')
-    .replace(/\[B\]/g, '<span class="btn-B">[B]</span>')
-    .replace(/\[X\]/g, '<span class="btn-X">[X]</span>')
-    .replace(/\[Y\]/g, '<span class="btn-Y">[Y]</span>');
 
   combo.forEach((s, i) => {
     if (i > 0) {
@@ -240,13 +240,11 @@ function renderTimeline() {
     item.innerHTML = `
       <button class="tdel" onclick="removeSkill(${i})">×</button>
       <span class="tname">${s.icon} ${s.nombre}</span>
-      <span style="font-size:.6rem;color:var(--muted)">${colorInput(s.input_xbox || '')}</span>
       <span class="tadd" onclick="openAddonModal(${i})">${addonLabel}</span>
     `;
     tl.appendChild(item);
   });
 
-  // Renderizar botones Xbox en grande
   renderXboxButtons();
 }
 
@@ -254,6 +252,7 @@ function renderTimeline() {
 //  BOTONES XBOX EN GRANDE (línea naranja)
 // ══════════════════════════════════════════════════
 function renderXboxButtons() {
+  // Eliminar línea anterior si existe
   const existing = document.getElementById('xbox-buttons-line');
   if (existing) existing.remove();
 
@@ -264,28 +263,29 @@ function renderXboxButtons() {
   container.style.cssText = `
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 14px 16px;
+    gap: 6px;
+    padding: 12px 14px;
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     border: 2px solid #ff8c00;
     border-radius: 12px;
-    margin: 12px 0;
+    margin: 10px 0 0 0;
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   `;
 
-  // Título
+  // Icono de gamepad
   const title = document.createElement('div');
   title.textContent = '🎮';
-  title.style.cssText = 'font-size: 1.5rem; margin-right: 8px; flex-shrink: 0;';
+  title.style.cssText = 'font-size: 1.4rem; margin-right: 6px; flex-shrink: 0;';
   container.appendChild(title);
 
   combo.forEach((s, i) => {
     if (i > 0) {
       const arrow = document.createElement('span');
       arrow.textContent = '→';
-      arrow.style.cssText = 'color: #ff8c00; font-size: 1.2rem; font-weight: bold; flex-shrink: 0;';
+      arrow.style.cssText = 'color: #ff8c00; font-size: 1.1rem; font-weight: bold; flex-shrink: 0; padding: 0 2px;';
       container.appendChild(arrow);
     }
 
@@ -294,9 +294,9 @@ function renderXboxButtons() {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       flex-shrink: 0;
-      min-width: 90px;
+      min-width: 85px;
     `;
 
     // Botones Xbox formateados en grande
@@ -304,11 +304,11 @@ function renderXboxButtons() {
     xboxDiv.style.cssText = `
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 1.1rem;
+      gap: 3px;
+      font-size: 1rem;
       font-weight: 700;
       background: #0a0a0c;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
       border: 1px solid #29292e;
       white-space: nowrap;
@@ -325,17 +325,17 @@ function renderXboxButtons() {
       .replace(/RB/g, '<span style="color:#fbbf24">RB</span>')
       .replace(/LT/g, '<span style="color:#4ade80">LT</span>')
       .replace(/RT/g, '<span style="color:#f472b6">RT</span>')
-      .replace(/\[A\]/g, '<span style="color:#4caf50">A</span>')
-      .replace(/\[B\]/g, '<span style="color:#f44336">B</span>')
-      .replace(/\[X\]/g, '<span style="color:#2196f3">X</span>')
-      .replace(/\[Y\]/g, '<span style="color:#ffc107">Y</span>');
+      .replace(/\[A\]/g, '<span style="color:#4caf50">[A]</span>')
+      .replace(/\[B\]/g, '<span style="color:#f44336">[B]</span>')
+      .replace(/\[X\]/g, '<span style="color:#2196f3">[X]</span>')
+      .replace(/\[Y\]/g, '<span style="color:#ffc107">[Y]</span>');
 
     xboxDiv.innerHTML = xboxText;
 
     // Nombre de la skill abajo
     const nameDiv = document.createElement('div');
     nameDiv.textContent = s.nombre.length > 12 ? s.nombre.substring(0, 12) + '...' : s.nombre;
-    nameDiv.style.cssText = 'font-size: .65rem; color: #8d8d99; text-align: center; max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
+    nameDiv.style.cssText = 'font-size: .62rem; color: #8d8d99; text-align: center; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
 
     btnGroup.appendChild(xboxDiv);
     btnGroup.appendChild(nameDiv);
@@ -554,15 +554,21 @@ function exportCombo() {
   const specLabel = currentSpec === 'succession' ? 'Sucesión' : 'Despertar';
   const classLabel = currentClass.charAt(0).toUpperCase() + currentClass.slice(1);
 
-  let text = `🎮 **${classLabel} — ${specLabel}**\n`;
-  text += `━━━━━━━━━━━━━━━━━━━━\n`;
+  let text = `🎮 **${classLabel} — ${specLabel}**
+`;
+  text += `━━━━━━━━━━━━━━━━━━━━
+`;
   combo.forEach((s, i) => {
     const prot = s.proteccion && s.proteccion !== 'Ninguna' ? `[${s.proteccion}]` : '';
-    const cc   = s.cc && s.cc !== 'Ninguno' ? `⚡${s.cc}` : '';
-    const addons = s.addons && s.addons.length ? `\n     Addons: ${s.addons.join(' + ')}` : '';
-    text += `${i+1}. ${s.icon} **${s.nombre}** ${prot} ${cc}\n   📲 ${s.input_xbox}${addons}\n`;
+    const cc = s.cc && s.cc !== 'Ninguno' ? `⚡${s.cc}` : '';
+    const addons = s.addons && s.addons.length ? `
+     Addons: ${s.addons.join(' + ')}` : '';
+    text += `${i+1}. ${s.icon} **${s.nombre}** ${prot} ${cc}
+   📲 ${s.input_xbox}${addons}
+`;
   });
-  text += `━━━━━━━━━━━━━━━━━━━━\n`;
+  text += `━━━━━━━━━━━━━━━━━━━━
+`;
   text += `🔢 ${combo.length} habilidades · BDO Combo Builder`;
 
   navigator.clipboard.writeText(text).then(() => {
