@@ -188,6 +188,69 @@ select {
 .legend-item { display:flex; align-items:center; gap:5px; font-size:.72rem; color:var(--muted); }
 .legend-dot { width:10px; height:10px; border-radius:2px; }
 
+/* ── BARRA DE INPUTS ── */
+.input-bar {
+  background:#0d0d12;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  min-height:54px;
+}
+.input-bar-empty {
+  color:var(--muted);
+  font-size:.8rem;
+  font-style:italic;
+}
+.ib-step {
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.ib-btn {
+  font-size:1rem;
+  font-weight:800;
+  padding:4px 10px;
+  border-radius:6px;
+  background:#1a1a22;
+  border:1px solid var(--border);
+  line-height:1.2;
+  white-space:nowrap;
+  letter-spacing:.02em;
+}
+.ib-btn .xbox-A { color:var(--xbox-a); }
+.ib-btn .xbox-B { color:var(--xbox-b); }
+.ib-btn .xbox-X { color:var(--xbox-x); }
+.ib-btn .xbox-Y { color:var(--xbox-y); }
+.ib-btn .xbox-LT { color:#e0b0ff; }
+.ib-btn .xbox-LB { color:#e0b0ff; }
+.ib-btn .xbox-RT { color:#ffd580; }
+.ib-btn .xbox-RB { color:#ffd580; }
+.ib-btn .xbox-LS { color:var(--muted); }
+.ib-sep {
+  color:#555;
+  font-size:1.1rem;
+  font-weight:700;
+}
+.ib-name {
+  font-size:.6rem;
+  color:var(--muted);
+  max-width:70px;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.ib-block {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+}
+
 /* ── ADDON MODAL ── */
 .modal-overlay {
   position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:200;
@@ -298,6 +361,11 @@ select {
       <div class="timeline" id="timeline">
         <span class="tempty">Vacío — toca una habilidad para agregarla</span>
       </div>
+    </div>
+
+    <!-- Barra de inputs -->
+    <div class="input-bar" id="input-bar">
+      <span class="input-bar-empty">Los inputs del combo aparecerán aquí</span>
     </div>
 
     <!-- Acciones -->
